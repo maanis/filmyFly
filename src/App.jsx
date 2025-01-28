@@ -5,10 +5,12 @@ import Feed from './components/Feed'
 
 const App = () => {
   return (
-    <Routes>
-      <Route path="/" element={<Login />} />
-      <Route path="/feed" element={<Feed />} />
-    </Routes>
+    <div className='h-screen w-full'>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/feed" element={<Feed />} />
+      </Routes>
+    </div>
   )
 }
 
