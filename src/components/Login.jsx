@@ -1,15 +1,18 @@
-import React, { useRef, useState } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useRef, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import bg from '../../public/bg.jpg'
 import Header from './Header'
 import { credentialValidator } from '../utils/credentialValidator'
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth'
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from 'firebase/auth'
 import { auth } from '../utils/firebase'
+import { useSelector } from 'react-redux'
 
 const Login = () => {
     const name = useRef()
     const email = useRef()
     const password = useRef()
+    const navigate = useNavigate()
+    const reduxUser = useSelector(state => state.user)
     const [isSignIn, setisSignIn] = useState(true)
     const [error, seterror] = useState('')
     const handleSubmit = async (e) => {
@@ -19,28 +22,35 @@ const Login = () => {
         seterror(val)
 
         if (!isSignIn) {
-            try {
-                const userCredential = await createUserWithEmailAndPassword(auth, email.current.value, password.current.value);
-                console.log("User signed up:", userCredential.user);
-            } catch (error) {
-                seterror(error.message)
-            }
-
-        } else {
-            signInWithEmailAndPassword(auth, email, password)
+            createUserWithEmailAndPassword(auth, email.current.value, password.current.value)
                 .then((userCredential) => {
-                    // Signed in 
                     const user = userCredential.user;
-                    console.log(user)
-                    // ...
+                    updateProfile(user, {
+                        displayName: name.current.value, photoURL: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqafzhnwwYzuOTjTlaYMeQ7hxQLy_Wq8dnQg&s"
+                    }).then(() => {
+                        useEffect(() => {
+                            if (reduxUser) navigate('/feed')
+                        }, [reduxUser])
+                    }).catch((error) => {
+                        console.log(error)
+                    });
                 })
                 .catch((error) => {
                     const errorCode = error.code;
                     const errorMessage = error.message;
-                    seterror(errorCode + '-' + errorMessage)
+                });
+
+        } else {
+            signInWithEmailAndPassword(auth, email.current.value, password.current.value)
+                .then((userCredential) => {
+                    const user = userCredential.user;
+                    console.log(user)
+                    navigate('/feed')
+                })
+                .catch((error) => {
+                    seterror(error.message)
                 });
         }
-        // console.log(auth)
     }
     return (
         <div style={{ backgroundImage: `url(${bg})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover' }} className='h-full flex justify-center items-center w-full relative'>
