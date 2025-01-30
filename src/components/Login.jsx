@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import bg from '../../public/bg.jpg'
 import Header from './Header'
 import { credentialValidator } from '../utils/credentialValidator'
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth'
+import { auth } from '../utils/firebase'
 
 const Login = () => {
     const name = useRef()
@@ -10,11 +12,35 @@ const Login = () => {
     const password = useRef()
     const [isSignIn, setisSignIn] = useState(true)
     const [error, seterror] = useState('')
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const val = credentialValidator(email.current.value, password.current.value)
         console.log('val', val)
         seterror(val)
+
+        if (!isSignIn) {
+            try {
+                const userCredential = await createUserWithEmailAndPassword(auth, email.current.value, password.current.value);
+                console.log("User signed up:", userCredential.user);
+            } catch (error) {
+                seterror(error.message)
+            }
+
+        } else {
+            signInWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                    // Signed in 
+                    const user = userCredential.user;
+                    console.log(user)
+                    // ...
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    seterror(errorCode + '-' + errorMessage)
+                });
+        }
+        // console.log(auth)
     }
     return (
         <div style={{ backgroundImage: `url(${bg})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover' }} className='h-full flex justify-center items-center w-full relative'>
