@@ -16,7 +16,7 @@ const Header = ({ feed = false }) => {
         });
     }
     return (
-        <div className="flex p-3 bg-gradient-to-br from-black/65 justify-between items-center w-full absolute top-0">
+        <div className="flex p-3 bg-gradient-to-b from-black/65 justify-between items-center w-full absolute top-0">
             <div className='w-44  top-0 left-0'>
                 <img src="../../public/logo.png" alt="" />
             </div>
