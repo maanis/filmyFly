@@ -61,7 +61,7 @@ const Login = () => {
                     <p className='text-red-600 text-sm mt-6 leading-none whitespace-nowrap'>{error && error}</p>
                     <button className='w-full cursor-pointer p-4 bg-red-600 rounded-md mt-8 text-2xl font-semibold'>{isSignIn ? 'Sign In' : 'Sign Up'}</button>
                     {isSignIn && <Link className='w-full text-center mt-4 inline-block' to={'/'}>Forgot password?</Link>}
-                    <p className='text-center select-none mt-6 text-zinc-500'>{isSignIn ? 'New user?' : 'Already a user?'} <span onClick={() => setisSignIn(!isSignIn)} className='text-white cursor-pointer font-medium'>{isSignIn ? 'Sign up now.' : 'Sign in now.'}</span></p>
+                    <p className='text-center select-none mt-6 text-zinc-500'>{isSignIn ? 'New user?' : 'Already a user?'} <span onClick={() => setisSignIn(!isSignIn)} className='text-white cursor-pointer hover:underline transition-all font-medium'>{isSignIn ? 'Sign up now.' : 'Sign in now.'}</span></p>
                 </form>
             </div>
 
