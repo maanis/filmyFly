@@ -3,7 +3,7 @@ import { auth } from '../utils/firebase';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { logoImg } from './constants';
+import { logoImg } from '../utils/constants';
 import { addUser, removeUser } from '../store/userSlice';
 
 
@@ -11,19 +11,19 @@ const Header = ({ feed = false }) => {
     const data = useSelector(state => state && state.user)
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    const reduxUser = useSelector(state => state.user)
 
     useEffect(() => {
-        onAuthStateChanged(auth, (user) => {
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
                 const { uid, displayName, email, photoURL } = user;
                 dispatch(addUser({ uid, displayName, email, photoURL }))
-                if (reduxUser) navigate('/feed')
+                navigate('/feed')
             } else {
                 dispatch(removeUser())
                 navigate('/')
             }
         });
+        return () => unsubscribe()
     }, [])
 
     const handleSignOut = () => {
