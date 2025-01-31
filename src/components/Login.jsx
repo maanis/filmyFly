@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import bg from '../../public/bg.jpg'
+import { Link } from 'react-router-dom'
+import bg from '../assets/bg.jpg'
 import Header from './Header'
 import { credentialValidator } from '../utils/credentialValidator'
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from 'firebase/auth'
@@ -11,8 +11,6 @@ const Login = () => {
     const name = useRef()
     const email = useRef()
     const password = useRef()
-    const navigate = useNavigate()
-    const reduxUser = useSelector(state => state.user)
     const [isSignIn, setisSignIn] = useState(true)
     const [error, seterror] = useState('')
     const handleSubmit = async (e) => {
@@ -28,9 +26,7 @@ const Login = () => {
                     updateProfile(user, {
                         displayName: name.current.value, photoURL: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqafzhnwwYzuOTjTlaYMeQ7hxQLy_Wq8dnQg&s"
                     }).then(() => {
-                        useEffect(() => {
-                            if (reduxUser) navigate('/feed')
-                        }, [reduxUser])
+
                     }).catch((error) => {
                         console.log(error)
                     });
@@ -45,7 +41,6 @@ const Login = () => {
                 .then((userCredential) => {
                     const user = userCredential.user;
                     console.log(user)
-                    navigate('/feed')
                 })
                 .catch((error) => {
                     seterror(error.message)
