@@ -33,8 +33,8 @@ const Header = ({ feed = false }) => {
         });
     }
     return (
-        <div className="flex p-3 bg-gradient-to-b from-black/65 justify-between items-center w-full absolute top-0">
-            <div className='w-44  top-0 left-0'>
+        <div className="flex p-3 px-8 bg-[#7e7e7e29]  backdrop-blur-sm justify-between items-center w-full absolute top-0 z-50">
+            <div className='w-32 top-0 left-0'>
                 <img src={logoImg} alt="" />
             </div>
             {feed && <div className='flex gap-2'>

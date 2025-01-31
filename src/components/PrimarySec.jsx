@@ -11,7 +11,7 @@ const PrimarySec = () => {
     const primaryMovie = nowPlaying[0]
     const { original_title, overview, release_date, id } = primaryMovie
     return (
-        <div>
+        <div className='relative'>
             <MovieBG id={id} />
             <MovieTitle title={original_title} overview={overview} release_date={release_date} />
         </div>

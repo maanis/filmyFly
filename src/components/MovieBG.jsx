@@ -18,8 +18,9 @@ const MovieBG = ({ id }) => {
     console.log(code)
     return (
         <div className='h-screen w-full '>
-            <iframe className='h-full w-full object-cover' src={`https://www.youtube.com/embed/${code}?si=F2iv_eriVXsWdhnk`} title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
-        </div>
+            <iframe className='w-full aspect-video object-cover object-top' src={`https://www.youtube.com/embed/${code}?autoplay=1&mute=1&loop=1&playlist=${code}&controls=0&modestbranding=1&showinfo=0&rel=0&iv_load_policy=3&disablekb=1&playsinline=1`}
+                title="YouTube video player" ></iframe>
+        </div >
     )
 }
 
