@@ -1,16 +1,14 @@
 import React from 'react'
-import Header from './Header'
-import PrimarySec from './PrimarySec'
-import SecondrySec from './SecondrySec'
+import Sidebar from './Sidebar'
+import Main from './Main'
 
 const Feed = () => {
-  return (
-    <div>
-      <Header feed={true} />
-      <PrimarySec />
-      {/* <SecondrySec/> */}
-    </div>
-  )
+    return (
+        <div className='h-screen flex w-full bg-zinc-800'>
+            <Sidebar />
+            <Main />
+        </div>
+    )
 }
 
 export default Feed
