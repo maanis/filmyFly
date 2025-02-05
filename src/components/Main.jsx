@@ -1,8 +1,8 @@
 import React from 'react'
 
-const Main = () => {
+const Main = ({ sidebar }) => {
     return (
-        <div className='w-[95%] bg-blue-500'>Main</div>
+        <div className={`${sidebar ? 'w-[85%]' : 'w-[95%]'} transition-all bg-blue-500`}>Main</div>
     )
 }
 
