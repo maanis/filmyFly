@@ -2,11 +2,11 @@ import React from 'react'
 import Topnav from './Topnav'
 import FeedHeader from './FeedHeader'
 
-const Main = ({ sidebar }) => {
+const Main = ({ sidebar, data }) => {
     return (
-        <div className={`${sidebar ? 'w-[85%]' : 'w-[95%]'} transition-all `}>
+        <div className={`${sidebar ? 'w-[85%]' : 'w-[95%]'} relative transition-all `}>
             <Topnav />
-            <FeedHeader />
+            <FeedHeader data={data} />
         </div>
     )
 }
