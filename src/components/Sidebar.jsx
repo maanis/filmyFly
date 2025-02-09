@@ -16,7 +16,7 @@ const Sidebar = ({ sidebar, sidebarfn }) => {
                     <li className='text-4xl cursor-pointer flex'>{e}</li>
                 ))} */}
                 {data.map((e, i) => (
-                    <li key={i} className={`text-4xl shadow-md px-1 ${i === 5 && 'mt-auto'} py-2 ${sidebar ? 'rounded-lg' : 'rounded-full justify-center'} items-center gap-2 transition-all w-full cursor-pointer flex`}>
+                    <li key={i} className={`text-4xl shadow-md px-2 ${i === 5 && 'mt-auto'} py-2 ${sidebar ? 'rounded-lg' : 'rounded-full justify-center'} items-center gap-2 transition-all w-full cursor-pointer flex hover:bg-red-500 hover:text-white`}>
                         <span className='text-2xl inline-block'>{e.icon}</span>
                         {sidebar && <p className='text-2xl capitalize font-semibold text-nowrap'>{e.name}</p>}
                     </li>
