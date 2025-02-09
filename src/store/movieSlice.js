@@ -7,7 +7,7 @@ const movieSlice = createSlice({
         queryResults: null
     },
     reducers: {
-        addMovies: (state, action) => {
+        addNowPlayingMovies: (state, action) => {
             state.nowPlaying = action.payload
         },
         addQueryDets: (state, action) => {
@@ -17,4 +17,4 @@ const movieSlice = createSlice({
 })
 
 export default movieSlice.reducer
-export const { addMovies, addQueryDets } = movieSlice.actions
+export const { addNowPlayingMovies, addQueryDets } = movieSlice.actions
