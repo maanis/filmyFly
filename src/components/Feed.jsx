@@ -5,6 +5,8 @@ import API_OPTIONS from '../utils/ApiOptions'
 import { useDispatch, useSelector } from 'react-redux'
 import { addFeedItems } from '../store/movieSlice'
 import Loader from './Loader'
+import { Route, Routes } from 'react-router-dom'
+import Trending from './Trending'
 
 const Feed = () => {
     const [category, setcategory] = useState('all')
@@ -38,6 +40,7 @@ const Feed = () => {
             <Sidebar sidebar={sidebar} sidebarfn={setSidebar} />
             <div className="gradient w-[1px] h-full bg-zinc-300"></div>
             <Main func={setcategory} data={wallpaper} sidebar={sidebar} sidebarfn={setSidebar} />
+
 
         </div>
     ) : <Loader />

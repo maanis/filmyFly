@@ -2,16 +2,18 @@ import React, { useEffect } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import Login from './components/Login'
 import Feed from './components/Feed'
-import Loader from './components/Loader'
+import Trending from './components/Trending'
+import Sidebar from './components/Sidebar'
 
 const App = () => {
 
   return (
-    <div className='h-screen w-full'>
+    <div className='h-screen flex w-full'>
+      <Sidebar />
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route path="/feed" element={<Feed />} />
-        <Route path="/trending" element={<Loader />} />
+        <Route path="/feed/*" element={<Feed />} />
+        <Route path="/trending" element={<Trending />} />
       </Routes>
     </div>
   )
