@@ -8,7 +8,6 @@ import Loader from './Loader'
 import { Route, Routes } from 'react-router-dom'
 import Trending from './Trending'
 
-
 const Feed = () => {
     const [category, setcategory] = useState('all')
     const [wallpaper, setwallpaper] = useState(null)
