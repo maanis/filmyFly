@@ -9,6 +9,7 @@ const Feed = () => {
       <Header feed={true} />
       <PrimarySec />
       {/* <SecondrySec/> */}
+
     </div>
   )
 }
