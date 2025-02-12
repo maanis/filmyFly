@@ -5,6 +5,7 @@ import Feed from './components/Feed'
 import Trending from './components/Trending'
 import Sidebar from './components/Sidebar'
 import Popular from './components/Popular'
+import Person from './components/Person'
 
 const App = () => {
 
@@ -18,6 +19,7 @@ const App = () => {
         <Route path="/feed" element={<Feed />} />
         <Route path="/trending" element={<Trending />} />
         <Route path="/popular" element={<Popular />} />
+        <Route path="/person" element={<Person />} />
       </Routes>
     </div>
   )
