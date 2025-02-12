@@ -8,14 +8,12 @@ const Topnav = () => {
     const [input, setinput] = useState('')
     const dispatch = useDispatch()
     const { queryResults } = useSelector(state => state.movies)
-    console.log(queryResults)
     const querySearch = async () => {
         const res = await fetch(`https://api.themoviedb.org/3/search/multi?query=${input}&include_adult=false&language=en-US&page=1`, API_OPTIONS)
         const data = await res.json()
         dispatch(addQueryDets(data.results))
     }
     useEffect(() => {
-
         querySearch()
     }, [input])
 

@@ -45,22 +45,26 @@ const Trending = () => {
 
     console.log(trending)
 
-    return trending ? (
-        <div className='h-full w-[94%] relative left-[5%]'>
-            <div className="nav w-full h-[9%] shadow-lg flex justify-between items-center px-4">
-                <p className='text-2xl font-semibold'>Trending</p>
-                <Dropdown options={['all', 'movie', 'tv',]} method={setcategory} />
+    return trending.length > 0 ? (
+        <>
+            <div className="gradient w-[1px] top-0 bottom-0 fixed left-[5%] min-h-full bg-zinc-300"></div>
+            <div className='min-h-full w-[94%] relative left-[5%]'>
+
+                <div className="nav w-full h-[9%] shadow-lg flex justify-between items-center px-4">
+                    <p className='text-2xl font-semibold'>Trending</p>
+                    <Dropdown options={['all', 'movie', 'tv',]} method={setcategory} />
+                </div>
+                <InfiniteScroll
+                    dataLength={trending.length}
+                    next={fetchMoreData}
+                    hasMore={hasMore}
+                    loader={<h4 className='w-full text-center mb-2'>Loading...</h4>}
+                    className='h-screen w-full'
+                >
+                    <Cards data={trending} />
+                </InfiniteScroll>
             </div>
-            <InfiniteScroll
-                dataLength={trending.length}
-                next={fetchMoreData}
-                hasMore={hasMore}
-                loader={<h4 className='w-full text-center mb-2'>Loading...</h4>}
-                className='h-screen w-full'
-            >
-                <Cards data={trending} />
-            </InfiniteScroll>
-        </div>
+        </>
     ) : <Loader />
 }
 

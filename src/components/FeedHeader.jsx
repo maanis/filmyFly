@@ -1,7 +1,6 @@
 import React from 'react'
 
 const FeedHeader = ({ data }) => {
-    console.log(data)
     if (!data) return
     return (
         <div style={{
