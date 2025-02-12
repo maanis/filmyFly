@@ -11,9 +11,11 @@ const App = () => {
   return (
     <div className='h-screen flex w-full'>
       <Sidebar sidebar={sidebar} sidebarfn={setSidebar} />
+      <div className="gradient w-[1px] h-full bg-zinc-300"></div>
+
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route path="/feed/*" element={<Feed />} />
+        <Route path="/feed" element={<Feed />} />
         <Route path="/trending" element={<Trending />} />
       </Routes>
     </div>
