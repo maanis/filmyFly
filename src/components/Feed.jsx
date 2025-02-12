@@ -28,7 +28,6 @@ const Feed = () => {
         const data = await fetch(`https://api.themoviedb.org/3/trending/${category}/day?language=en-US`, API_OPTIONS)
         const res = await data.json()
         setwallpaper(res.results[Math.floor(Math.random() * res.results.length)])
-        console.log(Math.random())
     }
     useEffect(() => {
         fetchFeedItems()
