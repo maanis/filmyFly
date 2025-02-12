@@ -6,7 +6,7 @@ import Dropdown from './Dropdown'
 
 const Main = ({ sidebar, data, func }) => {
     return (
-        <div className={`${sidebar ? 'w-[85%]' : 'w-full'} relative transition-all `}>
+        <div className={`${sidebar ? 'w-[84%]' : 'w-full'} relative transition-all `}>
             <Topnav />
             <FeedHeader data={data} />
             <div className="flex pl-3 pr-5 justify-between items-center h-[6%]">

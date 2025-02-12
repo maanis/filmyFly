@@ -46,7 +46,7 @@ const Trending = () => {
     console.log(trending)
 
     return trending ? (
-        <div className='h-full w-full'>
+        <div className='h-full w-[94%] relative left-[5%]'>
             <div className="nav w-full h-[9%] shadow-lg flex justify-between items-center px-4">
                 <p className='text-2xl font-semibold'>Trending</p>
                 <Dropdown options={['all', 'movie', 'tv',]} method={setcategory} />

@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
 
 const Sidebar = ({ sidebar, sidebarfn }) => {
     const data = [
@@ -10,8 +10,9 @@ const Sidebar = ({ sidebar, sidebarfn }) => {
         { icon: <i className="ri-account-circle-fill"></i>, name: 'Account', link: 'account' },
         { icon: <i className="ri-logout-circle-line"></i>, name: 'Logout', link: 'logout' }
     ]
+    const location = useLocation()
     return (
-        <div className={`${sidebar ? 'w-[16%]' : 'w-[5%]'} h-full transition-all p-2 flex justify-center items-center `}>
+        <div className={`${sidebar ? 'w-[16%]' : 'w-[5%]'} ${location.pathname === '/trending' && 'fixed z-50'} bg-white h-full transition-all p-2 flex justify-center items-center `}>
             <ul onMouseEnter={() => sidebarfn(true)} onMouseLeave={() => sidebarfn(false)} className='w-full  h-full p-2 flex flex-col items-center gap-5'>
                 {/* {[<i className="ri-compass-line"></i>, <i className="ri-funds-line"></i>, <i className="ri-save-line"></i>, <i className="ri-account-circle-fill"></i>].map(e => (
                     <li className='text-4xl cursor-pointer flex'>{e}</li>
