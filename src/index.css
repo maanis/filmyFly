@@ -104,8 +104,3 @@ select-ms-expand {
 .select:hover::after {
   color: red;
 }
-
-.active {
-  background-color: red;
-  color: white;
-}

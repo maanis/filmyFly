@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import API_OPTIONS from '../utils/ApiOptions'
 import { useDispatch, useSelector } from 'react-redux'
 import { addQueryDets } from '../store/movieSlice'
-import noImg from '../../public/noImg.jpg'
+import noImg from '/noImg.jpg'
 
 const Topnav = () => {
     const [input, setinput] = useState('')

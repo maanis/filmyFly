@@ -1,5 +1,5 @@
 import React from 'react'
-import loader from '../../public/loader.jpg'
+import loader from '/loader.jpg'
 const Loader = () => {
     return (
         <div className='w-full flex bg-[#e2e2e2] justify-center items-center h-screen'>
