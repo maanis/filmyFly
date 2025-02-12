@@ -51,7 +51,7 @@ const Trending = () => {
             <div className='min-h-full w-[94%] relative left-[5%]'>
 
                 <div className="nav w-full h-[9%] shadow-lg flex justify-between items-center px-4">
-                    <p className='text-2xl font-semibold'>Trending</p>
+                    <p className='text-2xl font-semibold'>Trending <small className='text-sm text-zinc-600'>({category})</small></p>
                     <Dropdown options={['all', 'movie', 'tv',]} method={setcategory} />
                 </div>
                 <InfiniteScroll

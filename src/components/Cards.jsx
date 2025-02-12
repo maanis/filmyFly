@@ -13,7 +13,7 @@ const Cards = ({ data }) => {
                     backgroundSize: "cover",
                     backgroundPosition: "center",
                 }} key={i} className={`w-[13%] transition-all relative rounded-md cursor-pointer h-[16rem] inline-block shrink-0`}>
-                    {d.vote_average && <div className="absolute bottom-8 right-[-15px] bg-yellow-500 rounded-full h-[45px] flex justify-center items-center font-semibold text-lg w-[45px]">{d.vote_average.toFixed(1)}</div>}
+                    {d.vote_average >= 0 && <div className="absolute bottom-8 right-[-15px] bg-yellow-500 rounded-full h-[45px] flex justify-center items-center font-semibold text-lg w-[45px]">{(d.vote_average * 10).toFixed()}<sup className='text-xs'>%</sup></div>}
                 </Link>
             ))}
         </div>
