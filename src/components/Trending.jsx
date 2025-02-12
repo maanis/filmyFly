@@ -26,7 +26,7 @@ const Trending = () => {
     console.log(trending)
 
     return trending.length > 0 ? (
-        <div className='h-screen w-full bg-zinc-100'>
+        <div className='h-screen w-full'>
             <div className="nav w-full h-[9%] shadow-lg flex justify-between items-center px-4">
                 <p className='text-2xl font-semibold'>Trending</p>
                 <Dropdown options={['all', 'movie', 'tv',]} method={setcategory} />
