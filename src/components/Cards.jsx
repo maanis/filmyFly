@@ -6,7 +6,7 @@ const Cards = ({ data, title }) => {
     return (
         <div className='w-full min-h-full overflow-y-auto overflow-x-hidden p-5 flex flex-wrap gap-5'>
             {data.map((d, i) => (
-                <Link to={`/${title || d.media_type}/${d.id}`} style={{
+                <Link to={`/${d.media_type || title}/${d.id}`} style={{
                     backgroundImage: `url('https://image.tmdb.org/t/p/original${d.backdrop_path || d.poster_path || d.profile_path
                         ? `https://image.tmdb.org/t/p/original${d.backdrop_path || d.poster_path || d.profile_path}`
                         : noImg}')`,
