@@ -5,9 +5,9 @@ const Loader = () => {
     useEffect(() => {
         setTimeout(() => {
             settext("If it's not loading try using VPN...")
-            return () => {
-                settext('')
-            }
+            // return () => {
+            //     settext('')
+            // }
         }, 6000);
     }, [])
     return (
