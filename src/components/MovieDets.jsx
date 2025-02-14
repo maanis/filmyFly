@@ -50,8 +50,14 @@ const MovieDets = () => {
         fetchMovieDets()
     }, [])
     console.log(movieDets)
-    return movieDets ? (
-        <div className='relative left-[5%]'>MovieDets</div>
+    return movieDets.length != [] ? (
+        <div style={{
+            backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, 0.9),rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2)), url('https://image.tmdb.org/t/p/original${movieDets.details.backdrop_path || movieDets.details.poster_path || movieDets.details.profile_path}')`,
+            backgroundSize: "cover",
+            backgroundPosition: "top",
+        }} className='h-screen w-full'>
+            
+        </div>
     ) : <Loader />
 }
 

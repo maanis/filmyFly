@@ -8,7 +8,7 @@ const FeedCards = () => {
     <div className='w-full flex gap-3 overflow-x-auto  h-[28%] px-3 py-2'>
       {feedItems.map((d, i) => (
         <Link to={`/${d.media_type}/${d.id}`} key={i} style={{
-          backgroundImage: `linear-gradient(to top, rgba(0, 0, 0, 0.9),rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2)),url('https://image.tmdb.org/t/p/original${d.backdrop_path || d.poster_path || d.profile_path}')`,
+          backgroundImage: `linear-gradient(to top, rgba(0, 0, 0, 0.9),rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2)),url('https://image.tmdb.org/t/p/original${d.poster_path || d.backdrop_path || d.profile_path}')`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }} className={`w-[10%] transition-all relative rounded-md cursor-pointer h-full shrink-0`}>

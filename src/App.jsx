@@ -16,7 +16,7 @@ const App = () => {
   return (
     <div className='h-screen flex w-full'>
       {allowedRoutes.includes(pathname) && <Sidebar />}
-      <div className="gradient w-[1px] h-full bg-zinc-300"></div>
+      {allowedRoutes.includes(pathname) && <div className="gradient w-[1px] h-full bg-zinc-300"></div>}
 
       <Routes>
         <Route path="/" element={<Login />} />

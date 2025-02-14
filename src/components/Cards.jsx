@@ -9,7 +9,7 @@ const Cards = ({ data, title }) => {
             {data.map((d, i) => (
                 <Link to={`/${d.media_type || title}/${d.id}`} style={{
                     backgroundImage: `url('https://image.tmdb.org/t/p/original${d.backdrop_path || d.poster_path || d.profile_path
-                        ? `https://image.tmdb.org/t/p/original${d.backdrop_path || d.poster_path || d.profile_path}`
+                        ? `https://image.tmdb.org/t/p/original${d.poster_path || d.backdrop_path || d.profile_path}`
                         : noImg}')`,
                     backgroundSize: "cover",
                     backgroundPosition: "center",
