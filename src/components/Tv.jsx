@@ -6,62 +6,65 @@ import Cards from './Cards'
 import Loader from './Loader'
 import { useDispatch, useSelector } from 'react-redux';
 
-const Popular = () => {
-    const [Popular, setPopular] = useState([])
+const Tv = () => {
+    const [Tv, setTv] = useState([])
+    const [category, setcategory] = useState('airing_today')
     const dispatch = useDispatch()
     const [hasMore, sethasMore] = useState(true)
     const [page, setpage] = useState(1)
-    const fetchPopular = async (pageNumber) => {
+    const fetchTv = async (pageNumber) => {
         try {
-            const data = await fetch(`https://api.themoviedb.org/3/movie/popular?language=en-US&page=${pageNumber}`, API_OPTIONS)
+            const data = await fetch(`https://api.themoviedb.org/3/tv/${category}?language=en-US&page=${pageNumber}`, API_OPTIONS)
             const res = await data.json()
             console.log(res)
             if (res.results.length === 0) {
                 sethasMore(false)
                 return
             }
-            setPopular(prev => [...prev, ...res.results])
+            setTv(prev => [...prev, ...res.results])
+            // setpage(page + 1)
         } catch (error) {
             console.log(error)
         }
     }
     useEffect(() => {
         console.log("Category changed, resetting data...");
-        setPopular([]);
+        setTv([]); // Clear previous data
         setpage(1);
         sethasMore(true);
-        fetchPopular(1);
-    }, []);
+        fetchTv(1); // Fetch first page when category changes
+    }, [category]);
 
     const fetchMoreData = () => {
         console.log("Fetching More Data...");
         const nextPage = page + 1;
         setpage(nextPage); // Update the page state
-        fetchPopular(nextPage);
+        fetchTv(nextPage);
     };
 
-    console.log(Popular)
+    console.log(Tv)
 
-    return Popular.length > 0 ? (
+    return Tv.length > 0 ? (
         <>
             <div className="gradient w-[1px] top-0 bottom-0 fixed left-[5%] min-h-full bg-zinc-300"></div>
             <div className='min-h-full w-[94%] relative left-[5%]'>
 
                 <div className="nav w-full h-[9%] shadow-lg flex justify-between items-center px-4">
-                    <p className='text-2xl font-semibold'>Popular</p>
+                    <p className='text-2xl font-semibold'>Tv <small className='text-sm text-zinc-600'>({category})</small></p>
+                    <Dropdown options={['airing_today', 'on_the_air', 'popular', 'top_rated']} method={setcategory} />
                 </div>
                 <InfiniteScroll
-                    dataLength={Popular.length}
+                    dataLength={Tv.length}
                     next={fetchMoreData}
                     hasMore={hasMore}
                     loader={<h4 className='w-full text-center mb-2'>Loading...</h4>}
                     className='h-screen w-full'
                 >
-                    <Cards data={Popular} title={'movie'} />
+                    <Cards data={Tv} title={'tv'} />
                 </InfiniteScroll>
             </div>
         </>
     ) : <Loader />
 }
 
-export default Popular
+export default Tv
