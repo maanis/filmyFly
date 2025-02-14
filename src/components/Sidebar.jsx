@@ -18,6 +18,8 @@ const Sidebar = () => {
     const location = useLocation()
     const dispatch = useDispatch()
     const sidebar = useSelector(state => state.utils)
+    
+
 
     return (
         <div className={`${sidebar ? 'w-[16%]' : 'w-[5%]'} ${location.pathname === '/feed' && 'static '} fixed z-50 bg-white h-full transition-all p-2 flex justify-center items-center `}>

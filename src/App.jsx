@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes, useLocation } from 'react-router-dom'
 import Login from './components/Login'
 import Feed from './components/Feed'
 import Trending from './components/Trending'
@@ -11,10 +11,11 @@ import Tv from './components/Tv'
 import Movies from './components/Movies'
 
 const App = () => {
-
+  const { pathname } = useLocation()
+  const allowedRoutes = ['/feed', '/trending', '/movies', '/tv', '/person'];
   return (
     <div className='h-screen flex w-full'>
-      <Sidebar />
+      {allowedRoutes.includes(pathname) && <Sidebar />}
       <div className="gradient w-[1px] h-full bg-zinc-300"></div>
 
       <Routes>
