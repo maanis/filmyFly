@@ -4,13 +4,18 @@ import API_OPTIONS from '../utils/ApiOptions'
 import Loader from './Loader'
 import FeedCards from './FeedCards'
 import Topnav from './Topnav'
+import { useDispatch, useSelector } from 'react-redux'
+import { addMovieDets, removeMovieDets } from '../store/details'
 
 
 const MovieDets = () => {
     const { pathname } = useLocation()
+    const dispatch = useDispatch()
     const { id } = useParams()
     const navigate = useNavigate()
-    const [movieDets, setmovieDets] = useState([])
+    // const [movieDets, setmovieDets] = useState([])
+    const movieDets = useSelector(state => state.details.movieDets)
+    // console.log(data)
     const fetchMovieDets = async () => {
         try {
             const endpoints = [
@@ -47,7 +52,8 @@ const MovieDets = () => {
                 watch_providers: watch_providers.results.IN,
                 external_ids
             }
-            setmovieDets(resp)
+            // setmovieDets(resp)
+            dispatch(addMovieDets(resp))
         } catch (error) {
             console.log(error)
         }
@@ -55,11 +61,11 @@ const MovieDets = () => {
     useEffect(() => {
         fetchMovieDets()
         return () => {
-            setmovieDets([])
+            dispatch(removeMovieDets())
         }
     }, [id])
     console.log(movieDets)
-    return movieDets.length != [] ? (
+    return movieDets ? (
         <div style={{
             backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, 0.9),rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2)), url('https://image.tmdb.org/t/p/original${movieDets.details.backdrop_path || movieDets.details.poster_path || movieDets.details.profile_path}')`,
             backgroundSize: "cover",
@@ -105,7 +111,7 @@ const MovieDets = () => {
             <div className='max-w-screen-xl flex justify-center items-center gap-5 mb-4 mx-auto '>
                 <p className='text-2xl text-white font-semibold'>Cast: </p>
                 {movieDets.credit.cast.slice(0, 6).map((e, i) => (
-                    <img src={`https://image.tmdb.org/t/p/original${e.profile_path}`} className='w-[6rem] shadow-lg h-[6rem] object-cover rounded-full' alt="" title={e.name || e.original_name} />
+                    <img key={i} src={`https://image.tmdb.org/t/p/original${e.profile_path}`} className='w-[6rem] shadow-lg h-[6rem] object-cover rounded-full' alt="" title={e.name || e.original_name} />
                 ))}
                 {movieDets.credit && movieDets.credit.cast.length > 6 && (
                     <Link className="w-[6rem] h-[6rem] flex flex-col items-center justify-center bg-zinc-300/20 backdrop-blur-md text-white rounded-full text-sm">
