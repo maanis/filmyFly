@@ -10,7 +10,10 @@ const Main = ({ sidebar, data, func }) => {
 
     return (
         <div className={`${sidebar ? 'w-[84%]' : 'w-full'} relative transition-all `}>
-            <Topnav />
+            <div className='h-[9%] bg-zinc-600/65 z-50 backdrop-blur-xs absolute shadow-md flex items-center justify-end w-full px-8'>
+
+                <Topnav />
+            </div>
             <FeedHeader data={data} />
             <div className="flex pl-3 pr-5 justify-between items-center h-[6%]">
                 <p className='text-2xl font-semibold'>Popular</p>
