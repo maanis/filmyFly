@@ -123,7 +123,7 @@ const MovieDets = () => {
             </div>
             <div className="gradient h-0.5 w-full bg-zinc-500"></div>
             <h2 className='text-white text-2xl px-3 py-4 font-bold'>Recommendations & Similar: </h2>
-            <FeedCards data={movieDets.recommendations && movieDets.recommendations.results.length > 0 ? movieDets.recommendations.results : movieDets.similar.results} />
+            <FeedCards title={'movie'} data={movieDets.recommendations && movieDets.recommendations.results.length > 0 ? movieDets.recommendations.results : movieDets.similar.results} />
             <Outlet />
         </div>
     ) : <Loader />
