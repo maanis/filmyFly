@@ -14,7 +14,7 @@ const MovieDets = () => {
     const { id } = useParams()
     const navigate = useNavigate()
     // const [movieDets, setmovieDets] = useState([])
-    const movieDets = useSelector(state => state.details.movieDets)
+    const movieDets = useSelector(state => state.details.info)
     // console.log(data)
     const fetchMovieDets = async () => {
         try {

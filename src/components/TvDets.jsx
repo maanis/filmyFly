@@ -13,9 +13,7 @@ const TvDets = () => {
     const dispatch = useDispatch()
     const { id } = useParams()
     const navigate = useNavigate()
-    // const [TvDets, setTvDets] = useState([])
-    const TvDets = useSelector(state => state.details.tvDets)
-    // console.log(data)
+    const TvDets = useSelector(state => state.details.info)
     const fetchTvDets = async () => {
         try {
             const endpoints = [
@@ -50,7 +48,6 @@ const TvDets = () => {
                 // watch_providers: watch_providers.results.IN,
                 external_ids
             }
-            // setTvDets(resp)
             dispatch(addTvDets(resp))
         } catch (error) {
             console.log(error)
@@ -88,9 +85,9 @@ const TvDets = () => {
                     <h2 className='text-5xl text-white font-black'>{TvDets.details.title || TvDets.details.name || TvDets.details.original_name}</h2>
                     <div className="flex gap-4 items-center text-white my-3">
                         <p className='flex items-end'><i className="ri-star-fill text-yellow-400 mr-0.5"></i>{(TvDets.details.vote_average).toFixed(1)} | <small className='ml-1'> {TvDets.details.vote_count}</small></p>
-                        <p className='ml-4'>{((TvDets.details.runtime) / 60).toFixed()}<small>h</small> {((TvDets.details.runtime) % 60)}<small>mins</small></p>
+                        <p className='ml-4'>{TvDets.details.seasons.length}<small> Seasons</small></p>
                         <p><span className='h-1 w-1 rounded-full bg-white inline-block'></span></p>
-                        <p className='text-sm'><span className='mr-1'>{TvDets.details.genres.map(e => e.name).join(', ')}</span> | <span className='ml-1'>{TvDets.details.last_air_date || TvDets.details.first_air_date}</span></p>
+                        <p className='text-sm'><span className='mr-1'>{TvDets.details.genres.map(e => e.name).join(', ')}</span> | <span className='ml-1'>{TvDets.details.first_air_date || TvDets.details.last_air_date}</span></p>
                         <a target='_blank' href={`${TvDets.details.homepage}`}><i className="ri-global-fill text-lg hover:text-blue-400"></i></a>
                     </div>
                     <p className=' text-zinc-300 my-3'>{TvDets.details.overview}</p>
@@ -119,6 +116,12 @@ const TvDets = () => {
                 )}
 
             </div>
+            {TvDets.details.seasons.length > 1 && <>
+                <div className="gradient h-0.5 w-full bg-zinc-500"></div>
+                <h2 className='text-white text-2xl px-3 py-4 font-bold'>Seasons:</h2>
+                <FeedCards title={'tv'} data={TvDets.details.seasons && TvDets.details.seasons.length > 0 && TvDets.details.seasons} />
+            </>}
+
             <div className="gradient h-0.5 w-full bg-zinc-500"></div>
             <h2 className='text-white text-2xl px-3 py-4 font-bold'>Recommendations & Similar: </h2>
             <FeedCards title={'tv'} data={TvDets.recommendations && TvDets.recommendations.results.length > 0 ? TvDets.recommendations.results : TvDets.similar.results} />
