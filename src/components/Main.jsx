@@ -3,8 +3,11 @@ import Topnav from './Topnav'
 import FeedHeader from './FeedHeader'
 import FeedCards from './FeedCards'
 import Dropdown from './Dropdown'
+import { useSelector } from 'react-redux'
 
 const Main = ({ sidebar, data, func }) => {
+    const { feedItems } = useSelector(state => state.movies)
+
     return (
         <div className={`${sidebar ? 'w-[84%]' : 'w-full'} relative transition-all `}>
             <Topnav />
@@ -14,7 +17,7 @@ const Main = ({ sidebar, data, func }) => {
                 <Dropdown options={['all', 'movie', 'tv',]} method={func} />
             </div>
 
-            <FeedCards />
+            <FeedCards data={feedItems} />
         </div >
     )
 }

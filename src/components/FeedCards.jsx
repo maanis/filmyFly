@@ -1,12 +1,12 @@
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
-const FeedCards = () => {
-  const { feedItems } = useSelector(state => state.movies)
-  if (!feedItems) return
-  return (
+const FeedCards = ({ data }) => {
+  if (!data) return
+  console.log(data)
+  return data.length > 0 ? (
     <div className='w-full flex gap-3 overflow-x-auto  h-[28%] px-3 py-2'>
-      {feedItems.map((d, i) => (
+      {data.map((d, i) => (
         <Link to={`/${d.media_type}/${d.id}`} key={i} style={{
           backgroundImage: `linear-gradient(to top, rgba(0, 0, 0, 0.9),rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2)),url('https://image.tmdb.org/t/p/original${d.poster_path || d.backdrop_path || d.profile_path}')`,
           backgroundSize: "cover",
@@ -16,7 +16,7 @@ const FeedCards = () => {
         </Link>)
       )}
     </div>
-  )
+  ) : <h2 className='text-zinc-500 px-3'>Nothing to show...</h2>
 }
 
 export default FeedCards
