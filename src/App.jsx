@@ -9,10 +9,11 @@ import MovieDets from './components/MovieDets'
 import TvDets from './components/TvDets'
 import Tv from './components/Tv'
 import Movies from './components/Movies'
+import Trailer from './components/Trailer'
 
 const App = () => {
   const { pathname } = useLocation()
-  const allowedRoutes = ['/feed', '/trending', '/movies', '/tv', '/person'];
+  const allowedRoutes = ['/feed', '/trending', '/movie', '/tv', '/person'];
   return (
     <div className='h-screen flex w-full'>
       {allowedRoutes.includes(pathname) && <Sidebar />}
@@ -22,9 +23,11 @@ const App = () => {
         <Route path="/" element={<Login />} />
         <Route path="/feed" element={<Feed />} />
         <Route path="/trending" element={<Trending />} />
-        <Route path="/movies" element={<Movies />} />
+        <Route path="/movie" element={<Movies />} />
         <Route path="/tv" element={<Tv />} />
-        <Route path="/movie/:id" element={<MovieDets />} />
+        <Route path="/movie/:id" element={<MovieDets />} >
+          <Route path='/movie/:id/trailer' element={<Trailer />} />
+        </Route>
         <Route path="/tv/:id" element={<TvDets />} />
         <Route path="/person" element={<Person />} />
       </Routes>

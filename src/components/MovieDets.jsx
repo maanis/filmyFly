@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { Link, Outlet, useLocation, useNavigate, useParams } from 'react-router-dom'
 import API_OPTIONS from '../utils/ApiOptions'
 import Loader from './Loader'
 import FeedCards from './FeedCards'
@@ -7,6 +7,7 @@ import Topnav from './Topnav'
 
 
 const MovieDets = () => {
+    const { pathname } = useLocation()
     const { id } = useParams()
     const navigate = useNavigate()
     const [movieDets, setmovieDets] = useState([])
@@ -90,7 +91,7 @@ const MovieDets = () => {
                     </div>
                     <p className=' text-zinc-300 my-3'>{movieDets.details.overview}</p>
                     <div className="flex gap-3 mb-3">
-                        <button className='px-4 py-1 rounded-md bg-red-500 text-white hover:bg-red-700 transition-colors  cursor-pointer font-semibold text-lg'>Watch trailer</button>
+                        <Link to={`${pathname}/trailer`} className='px-4 py-1 rounded-md bg-red-500 inline-block text-white hover:bg-red-700 transition-colors  cursor-pointer font-semibold text-lg'>Watch trailer</Link>
                         <a target='_blank' href={`https://www.imdb.com/title/${movieDets.external_ids.imdb_id}/`} className='px-4 py-1 rounded-md bg-yellow-400 text-black hover:bg-yellow-500  transition-colors  cursor-pointer font-semibold text-lg flex items-center'>
                             <i className="ri-star-fill text-sm text-zinc-100 mr-1"></i>
                             <span>IMDB</span>
@@ -117,7 +118,7 @@ const MovieDets = () => {
             <div className="gradient h-0.5 w-full bg-zinc-500"></div>
             <h2 className='text-white text-2xl px-3 py-4 font-bold'>Recommendations & Similar: </h2>
             <FeedCards data={movieDets.recommendations && movieDets.recommendations.results.length > 0 ? movieDets.recommendations.results : movieDets.similar.results} />
-
+            <Outlet />
         </div>
     ) : <Loader />
 }
