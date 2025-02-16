@@ -9,13 +9,15 @@ const Playlist = () => {
 
 
     const playlist = useSelector(state => state.movies.playlist)
-    console.log(playlist)
+    const reversedPlaylist = [...playlist].reverse();
+    console.log(reversedPlaylist)
 
     return (
         <div className='h-screen w-full bg-zinc-800'>
             <DetsNav />
-            {playlist.length > 0 ? <div className='w-full h-full overflow-y-auto overflow-x-hidden p-5 flex flex-wrap gap-5'>
-                {playlist.map((d, i) => (
+            {reversedPlaylist.length > 0 ? <div className='w-full h-[91%] overflow-y-auto overflow-x-hidden p-5 flex flex-wrap gap-5'>
+                <h2 className='w-full text-center text-white text-4xl font-semibold my-3'>My Playlist:</h2>
+                {reversedPlaylist.map((d, i) => (
                     <Link to={`/${d.Dets.media_type || d.title}/${d.Dets.id}`} style={{
                         backgroundImage: d.Dets.backdrop_path || d.Dets.poster_path || d.Dets.profile_path ? `url('https://image.tmdb.org/t/p/original${d.Dets.backdrop_path || d.Dets.poster_path || d.Dets.profile_path})` : `url(${noImg})`,
                         backgroundSize: "cover",
