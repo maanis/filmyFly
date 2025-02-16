@@ -4,7 +4,6 @@ import { noImg } from '../utils/constants'
 
 const FeedCards = ({ data, title = '' }) => {
   if (!data) return
-  console.log(data)
   return data.length > 0 ? (
     <div className='w-full flex gap-3 overflow-x-auto  h-[28%] px-3 py-2'>
       {data.map((d, i) => (

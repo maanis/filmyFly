@@ -25,7 +25,8 @@ const movieSlice = createSlice({
             state.queryResults = action.payload;
         },
         toggle: (state, action) => {
-            const id = state.playlist.findIndex((e) => e.id === action.payload.id);
+            console.log(action.payload)
+            const id = state.playlist.findIndex((e) => e.Dets.id === action.payload.Dets.id);
             if (id !== -1) {
                 state.playlist.splice(id, 1); // Remove item if it exists
             } else {

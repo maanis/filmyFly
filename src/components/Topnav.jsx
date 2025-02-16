@@ -13,7 +13,6 @@ const Topnav = () => {
         const res = await fetch(`https://api.themoviedb.org/3/search/multi?query=${input}&include_adult=false&language=en-US&page=1`, API_OPTIONS)
         const data = await res.json()
         dispatch(addQueryDets(data.results))
-        console.log(data.results)
     }
     useEffect(() => {
         querySearch()

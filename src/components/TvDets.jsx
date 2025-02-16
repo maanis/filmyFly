@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { addTvDets, removeTvDets } from '../store/details'
 import { noImg } from '../utils/constants'
 import DetsNav from './DetsNav'
+import { toggle } from '../store/movieSlice'
 
 
 const TvDets = () => {
@@ -96,6 +97,7 @@ const TvDets = () => {
                             <i className="ri-star-fill text-sm text-zinc-100 mr-1"></i>
                             <span>IMDB</span>
                         </a >
+                        <button onClick={() => dispatch(toggle({ Dets: TvDets.details, title: 'tv' }))} className='bg-white px-2 cursor-pointer rounded-sm'><i className="ri-bookmark-line text-xl"></i></button>
                     </div>
                     {TvDets.watch_providers && TvDets.watch_providers.flatrate && <div className='flex  mt-2 text-white tracking-tight text-nowrap items-center gap-4'>
                         Available on platforms: {TvDets.watch_providers.flatrate.map((e, i) => <img src={`https://image.tmdb.org/t/p/original${e.logo_path} `} title={e.provider_name} className='w-[45px] rounded-lg' />)}
