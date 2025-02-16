@@ -16,7 +16,7 @@ const FeedHeader = ({ data }) => {
                     <i className="ri-megaphone-line mr-1 text-yellow-400"></i>{data.release_date || 'NA'}
                     <i className="ri-film-fill mr-1 text-yellow-400 ml-4"></i>{data.media_type}
                 </p>
-                <button className='px-4 py-1 rounded-md bg-red-500 hover:bg-red-700 transition-colors mt-3 cursor-pointer font-semibold text-lg'>Watch trailer</button>
+                <Link to={`/${data.media_type}/${data.id}/trailer`} className='px-4 inline-block py-1 rounded-md bg-red-500 hover:bg-red-700 transition-colors mt-3 cursor-pointer font-semibold text-lg'>Watch trailer</Link >
             </div>
         </div>
     )

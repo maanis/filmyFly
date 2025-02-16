@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { noImg } from '../utils/constants'
 
 const Cards = ({ data, title }) => {
-    const [showText, setshowText] = useState(false)
+    const [showText, setshowText] = useState(true)
     return (
         <div className='w-full min-h-full overflow-y-auto overflow-x-hidden p-5 flex flex-wrap gap-5'>
             {data.map((d, i) => (

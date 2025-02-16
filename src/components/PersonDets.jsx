@@ -11,15 +11,13 @@ import DetsNav from './DetsNav'
 const PersonDets = () => {
     const dispatch = useDispatch()
     const { id } = useParams()
-    const PersonDets = useSelector(state => state.details.info)
+    const [PersonDets, setPersonDets] = useState(null)
+    // const PersonDets = useSelector(state => state.details.info)
     const fetchPersonDets = async () => {
         try {
             const endpoints = [
                 `person/${id}?language=en-US`,
                 `person/${id}/movie_credits?language=en-US`,
-                `person/${id}/tv_credits?language=en-US&page=1`,
-                `person/${id}/latest?language=en-US`,
-                `person/${id}/changes?language=en-US&page=1`,
                 `person/${id}/external_ids`
             ];
 
@@ -30,19 +28,15 @@ const PersonDets = () => {
             const data = await Promise.all(responses.map(res => res.json()));
 
             const [
-                details, movie_credits, tv_credits,
-                latest, changes, external_ids
+                details, movie_credits, external_ids
             ] = data;
 
             const resp = {
                 details,
                 movie_credits,
-                tv_credits,
-                latest,
-                changes,
                 external_ids
             }
-            dispatch(addPersonDets(resp))
+            setPersonDets(resp)
         } catch (error) {
             console.log(error)
         }
@@ -52,10 +46,11 @@ const PersonDets = () => {
         fetchPersonDets()
         console.log('hey')
         return () => {
-            dispatch(removePersonDets())
+            setPersonDets(null)
             console.log('byy')
         }
-    }, [])
+    }, [id])
+
     console.log(PersonDets)
     return PersonDets ? (
         <div className='w-full bg-zinc-800 h-screen'>
@@ -68,11 +63,13 @@ const PersonDets = () => {
                             {PersonDets.details.popularity && <div className="absolute top-4 left-[-15px] bg-yellow-500 rounded-full h-[45px] z-50 flex justify-center items-center font-semibold  w-[45px]">{(PersonDets.details.popularity).toFixed(1)}<sup className='text-xs'>%</sup>
                             </div>}
                         </div>
+                        <div className="gradient h-0.5 mt-4 w-full bg-zinc-500"></div>
+
                         <div className="flex justify-between items-center mt-3">
-                            <Link to={``}><i className="ri-facebook-fill text-2xl"></i></Link>
-                            <Link to={``}><i className="ri-instagram-fill text-2xl"></i></Link>
-                            <Link to={``}><i className="ri-twitter-fill text-2xl"></i></Link>
-                            <Link to={``}><i className="ri-global-fill text-2xl"></i></Link>
+                            <a target='_blank' href={`https://www.facebook.com/${PersonDets.external_ids.facebook_id}/`}><i className="ri-facebook-fill text-2xl"></i></a>
+                            <a target='_blank' href={`https://www.instagram.com/${PersonDets.external_ids.instagram_id}/`}><i className="ri-instagram-fill text-2xl"></i></a>
+                            <a target='_blank' href={`https://www.twitter.com/${PersonDets.external_ids.twitter_id}/`}><i className="ri-twitter-fill text-2xl"></i></a>
+                            <a target='_blank' href={`https://www.imdb.com/name/${PersonDets.external_ids.imdb_id}/`}><i className="ri-global-fill text-2xl"></i></a>
                         </div>
 
                     </div>

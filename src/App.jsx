@@ -15,7 +15,7 @@ import PersonDets from './components/PersonDets'
 
 const App = () => {
   const { pathname } = useLocation()
-  const allowedRoutes = ['/feed', '/trending', '/movie', '/tv', '/person'];
+  const allowedRoutes = ['/feed', '/trending', '/movies', '/tv', '/person'];
   return (
     <div className='h-screen flex w-full'>
       {allowedRoutes.includes(pathname) && <Sidebar />}
