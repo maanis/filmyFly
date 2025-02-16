@@ -8,9 +8,7 @@ const Cards = ({ data, title }) => {
         <div className='w-full min-h-full overflow-y-auto overflow-x-hidden p-5 flex flex-wrap gap-5'>
             {data.map((d, i) => (
                 <Link to={`/${d.media_type || title}/${d.id}`} style={{
-                    backgroundImage: `url('https://image.tmdb.org/t/p/original${d.backdrop_path || d.poster_path || d.profile_path
-                        ? `https://image.tmdb.org/t/p/original${d.poster_path || d.backdrop_path || d.profile_path}`
-                        : noImg}')`,
+                    backgroundImage: d.backdrop_path || d.poster_path || d.profile_path ? `url('https://image.tmdb.org/t/p/original${d.backdrop_path || d.poster_path || d.profile_path})` : `url(${noImg})`,
                     backgroundSize: "cover",
                     backgroundPosition: "center",
                 }} key={i} className={`w-[13%]  transition-all relative rounded-md cursor-pointer h-[16rem] inline-block shrink-0`}>

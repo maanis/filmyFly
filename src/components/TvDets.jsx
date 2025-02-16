@@ -6,6 +6,7 @@ import FeedCards from './FeedCards'
 import Topnav from './Topnav'
 import { useDispatch, useSelector } from 'react-redux'
 import { addTvDets, removeTvDets } from '../store/details'
+import { noImg } from '../utils/constants'
 
 
 const TvDets = () => {
@@ -59,10 +60,11 @@ const TvDets = () => {
             dispatch(removeTvDets())
         }
     }, [id])
+    // console.log(TvDets.details.success)
     console.log(TvDets)
     return TvDets ? (
         <div style={{
-            backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, 0.9),rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2)), url('https://image.tmdb.org/t/p/original${TvDets.details.backdrop_path || TvDets.details.poster_path || TvDets.details.profile_path}')`,
+            backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, 0.9),rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2)), url('https://image.tmdb.org/t/p/original${TvDets.details.backdrop_path || TvDets.details.poster_path || TvDets.details.profile_path}') `,
             backgroundSize: "cover",
             backgroundPosition: "top",
         }} className='h-screen overflow-auto w-full pb-6'>
@@ -78,7 +80,7 @@ const TvDets = () => {
             <div className=" max-w-screen-lg p-5 flex mx-auto gap-6 py-10">
 
                 <div className='w-[22%] '>
-                    <img src={`https://image.tmdb.org/t/p/original${TvDets.details.poster_path || TvDets.details.backdrop_path || TvDets.details.profile_path}'`} className='h-[300px] w-full  rounded-lg object-cover' alt="" />
+                    <img src={TvDets.details.poster_path || TvDets.details.backdrop_path || TvDets.details.profile_path ? `https://image.tmdb.org/t/p/original${TvDets.details.poster_path || TvDets.details.backdrop_path || TvDets.details.profile_path}'` : noImg} className='h-[300px] w-full  rounded-lg object-cover' alt="" />
                 </div>
 
                 <div className='w-[78%]'>
@@ -106,7 +108,7 @@ const TvDets = () => {
             <div className='max-w-screen-xl flex justify-center items-center gap-5 mb-4 mx-auto '>
                 <p className='text-2xl text-white font-semibold'>Cast: </p>
                 {TvDets.credit.cast.slice(0, 6).map((e, i) => (
-                    <img key={i} src={`https://image.tmdb.org/t/p/original${e.profile_path}`} className='w-[6rem] shadow-lg h-[6rem] object-cover rounded-full' alt="" title={e.name || e.original_name} />
+                    <img key={i} src={e.profile_path ? `https://image.tmdb.org/t/p/original${e.profile_path}` : noImg} className='w-[6rem] shadow-lg h-[6rem] object-cover rounded-full' alt="" title={e.name || e.original_name} />
                 ))}
                 {TvDets.credit && TvDets.credit.cast.length > 6 && (
                     <Link className="w-[6rem] h-[6rem] flex flex-col items-center justify-center bg-zinc-300/20 backdrop-blur-md text-white rounded-full text-sm">

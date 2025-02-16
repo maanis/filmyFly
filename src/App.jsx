@@ -10,6 +10,7 @@ import TvDets from './components/TvDets'
 import Tv from './components/Tv'
 import Movies from './components/Movies'
 import Trailer from './components/Trailer'
+import Error from './components/Error'
 
 const App = () => {
   const { pathname } = useLocation()
@@ -32,6 +33,7 @@ const App = () => {
           <Route path='/tv/:id/trailer' element={<Trailer />} />
         </Route>
         <Route path="/person" element={<Person />} />
+        <Route path="*" element={<Error />} />
       </Routes>
     </div>
   )
