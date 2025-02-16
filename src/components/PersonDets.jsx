@@ -1,19 +1,16 @@
 import React, { useEffect, useState } from 'react'
-import { Link, Outlet, useLocation, useNavigate, useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import API_OPTIONS from '../utils/ApiOptions'
 import Loader from './Loader'
 import FeedCards from './FeedCards'
-import Topnav from './Topnav'
 import { useDispatch, useSelector } from 'react-redux'
 import { addPersonDets, removePersonDets } from '../store/details'
 import { noImg } from '../utils/constants'
 import DetsNav from './DetsNav'
 
 const PersonDets = () => {
-    const { pathname } = useLocation()
     const dispatch = useDispatch()
     const { id } = useParams()
-    const navigate = useNavigate()
     const PersonDets = useSelector(state => state.details.info)
     const fetchPersonDets = async () => {
         try {
@@ -43,7 +40,6 @@ const PersonDets = () => {
                 tv_credits,
                 latest,
                 changes,
-                // watch_providers: watch_providers.results.IN,
                 external_ids
             }
             dispatch(addPersonDets(resp))
@@ -54,10 +50,12 @@ const PersonDets = () => {
     }
     useEffect(() => {
         fetchPersonDets()
+        console.log('hey')
         return () => {
             dispatch(removePersonDets())
+            console.log('byy')
         }
-    }, [id])
+    }, [])
     console.log(PersonDets)
     return PersonDets ? (
         <div className='w-full bg-zinc-800 h-screen'>
