@@ -1,33 +1,42 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+// Load stored playlist from localStorage on app start
+const loadPlaylist = () => {
+    const storedPlaylist = localStorage.getItem("playlist");
+    return storedPlaylist ? JSON.parse(storedPlaylist) : [];
+};
+
 const movieSlice = createSlice({
-    name: 'movies',
+    name: "movies",
     initialState: {
         feedItems: null,
         trending: null,
         queryResults: null,
-        playList: []
+        playlist: loadPlaylist(), // Load playlist from localStorage
     },
     reducers: {
         addTrending: (state, action) => {
-            state.trending = action.payload
+            state.trending = action.payload;
         },
         addFeedItems: (state, action) => {
-            state.feedItems = action.payload
+            state.feedItems = action.payload;
         },
         addQueryDets: (state, action) => {
-            state.queryResults = action.payload
+            state.queryResults = action.payload;
         },
-        addPlayList: (state, action) => {
-            state.playList.push(action.payload)
+        toggle: (state, action) => {
+            const id = state.playlist.findIndex((e) => e.id === action.payload.id);
+            if (id !== -1) {
+                state.playlist.splice(id, 1); // Remove item if it exists
+            } else {
+                state.playlist.push(action.payload); // Add item if not in playlist
+            }
+
+            // Save updated playlist to localStorage
+            localStorage.setItem("playlist", JSON.stringify(state.playlist));
         },
-        removePlaylist: (state, action) => {
-            state.playList.filter(e => e.id != action.payload)
-            console.log(action.payload)
-        }
+    },
+});
 
-    }
-})
-
-export default movieSlice.reducer
-export const { addTrending, addFeedItems, addQueryDets, addPlayList, removePlaylist } = movieSlice.actions
+export default movieSlice.reducer;
+export const { addTrending, addFeedItems, addQueryDets, toggle } = movieSlice.actions;

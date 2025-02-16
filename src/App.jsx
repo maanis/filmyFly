@@ -12,6 +12,7 @@ import Movies from './components/Movies'
 import Trailer from './components/Trailer'
 import Error from './components/Error'
 import PersonDets from './components/PersonDets'
+import Playlist from './components/Playlist'
 
 const App = () => {
   const { pathname } = useLocation()
@@ -35,6 +36,7 @@ const App = () => {
         </Route>
         <Route path="/person" element={<Person />} />
         <Route path="/person/:id" element={<PersonDets />} />
+        <Route path="/playlist" element={<Playlist />} />
         <Route path="*" element={<Error />} />
       </Routes>
     </div>

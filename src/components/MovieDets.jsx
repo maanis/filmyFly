@@ -7,7 +7,8 @@ import Topnav from './Topnav'
 import { useDispatch, useSelector } from 'react-redux'
 import { addMovieDets, removeMovieDets } from '../store/details'
 import DetsNav from './DetsNav'
-import { addPlayList, removePlaylist } from '../store/movieSlice'
+import { toggle } from '../store/movieSlice'
+// import { togglePlayList } from '../store/movieSlice'
 
 
 const MovieDets = () => {
@@ -72,17 +73,7 @@ const MovieDets = () => {
     // console.log(playlist)
     const playlist = useSelector(state => state.movies.playList)
     const handlePlaylist = () => {
-        // console.log(id)
-        console.log(playlist)
-        const prePlaylist = playlist.length > 0 && playlist.filter(e => e.id === id)
-        console.log(prePlaylist)
-        if (prePlaylist.length > 0) {
-            dispatch(removePlaylist(ii))
-            console.log('hai')
-        } else {
-            dispatch(addPlayList(movieDets.details))
-            console.log('nahi hai')
-        }
+        dispatch(togglePlayList())
     }
 
     console.log(movieDets)
@@ -94,7 +85,7 @@ const MovieDets = () => {
         }} className='h-screen overflow-auto w-full pb-6'>
 
 
-            {/* <DetsNav /> */}
+            <DetsNav />
 
 
             <div className=" max-w-screen-lg p-5 flex mx-auto gap-6 py-10">
@@ -119,10 +110,10 @@ const MovieDets = () => {
                             <i className="ri-star-fill text-sm text-zinc-100 mr-1"></i>
                             <span>IMDB</span>
                         </a >
-                        <button onClick={() => handlePlaylist(id)} className='bg-white px-2 cursor-pointer rounded-sm'><i className="ri-bookmark-line text-xl"></i></button>
+                        <button onClick={() => dispatch(toggle(movieDets.details))} className='bg-white px-2 cursor-pointer rounded-sm'><i className="ri-bookmark-line text-xl"></i></button>
                     </div>
                     {movieDets.watch_providers && movieDets.watch_providers.flatrate && <div className='flex  mt-2 text-white tracking-tight text-nowrap items-center gap-4'>
-                        Available on platforms: {movieDets.watch_providers.flatrate.map((e, i) => <img src={`https://image.tmdb.org/t/p/original${e.logo_path} `} title={e.provider_name} className='w-[45px] rounded-lg' />)}
+                        Available on platforms: {movieDets.watch_providers.flatrate.map((e, i) => <img key={i} src={`https://image.tmdb.org/t/p/original${e.logo_path} `} title={e.provider_name} className='w-[45px] rounded-lg' />)}
                     </div>}
                 </div>
             </div>

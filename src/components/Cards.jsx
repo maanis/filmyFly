@@ -4,7 +4,8 @@ import { noImg } from '../utils/constants'
 
 const Cards = ({ data, title }) => {
     const [showText, setshowText] = useState(true)
-    return (
+    console.log(data)
+    return data.length > 0 ? (
         <div className='w-full min-h-full overflow-y-auto overflow-x-hidden p-5 flex flex-wrap gap-5'>
             {data.map((d, i) => (
                 <Link to={`/${d.media_type || title}/${d.id}`} style={{
@@ -19,7 +20,7 @@ const Cards = ({ data, title }) => {
                 </Link>
             ))}
         </div>
-    )
+    ) : <h2>Nothing To Show...</h2>
 }
 
 export default Cards
