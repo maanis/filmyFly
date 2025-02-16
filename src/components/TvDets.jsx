@@ -15,7 +15,7 @@ const TvDets = () => {
     const { pathname } = useLocation()
     const dispatch = useDispatch()
     const { id } = useParams()
-    const navigate = useNavigate()
+    const [save, setsave] = useState(true)
     const TvDets = useSelector(state => state.details.info)
     const fetchTvDets = async () => {
         try {
@@ -56,13 +56,20 @@ const TvDets = () => {
             console.log(error)
         }
     }
+    const playlist = useSelector(state => state.movies.playlist)
+
     useEffect(() => {
         fetchTvDets()
+        const exist = playlist.findIndex(e => e.Dets.id == id)
+        if (exist != -1) {
+            setsave(true)
+        } else {
+            setsave(false)
+        }
         return () => {
             dispatch(removeTvDets())
         }
-    }, [id])
-    // console.log(TvDets.details.success)
+    }, [id, playlist])
     console.log(TvDets)
     return TvDets ? (
         <div style={{
@@ -97,7 +104,7 @@ const TvDets = () => {
                             <i className="ri-star-fill text-sm text-zinc-100 mr-1"></i>
                             <span>IMDB</span>
                         </a >
-                        <button onClick={() => dispatch(toggle({ Dets: TvDets.details, title: 'tv' }))} className='bg-white px-2 cursor-pointer rounded-sm'><i className="ri-bookmark-line text-xl"></i></button>
+                        <button onClick={() => dispatch(toggle({ Dets: TvDets.details, title: 'tv' }))} className='bg-white px-2 cursor-pointer rounded-sm'><i className={`${save ? 'ri-bookmark-fill' : 'ri-bookmark-line'} text-xl`}></i></button>
                     </div>
                     {TvDets.watch_providers && TvDets.watch_providers.flatrate && <div className='flex  mt-2 text-white tracking-tight text-nowrap items-center gap-4'>
                         Available on platforms: {TvDets.watch_providers.flatrate.map((e, i) => <img src={`https://image.tmdb.org/t/p/original${e.logo_path} `} title={e.provider_name} className='w-[45px] rounded-lg' />)}

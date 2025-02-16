@@ -65,18 +65,16 @@ const MovieDets = () => {
     const playlist = useSelector(state => state.movies.playlist)
     useEffect(() => {
         fetchMovieDets()
-        console.log(playlist)
         const exist = playlist.findIndex(e => e.Dets.id == id)
         if (exist != -1) {
             setsave(true)
         } else {
             setsave(false)
         }
-        console.log(save)
         return () => {
             dispatch(removeMovieDets())
         }
-    }, [id, setsave, save])
+    }, [id, playlist])
 
 
     // console.log(playlist)
@@ -118,7 +116,7 @@ const MovieDets = () => {
                             <i className="ri-star-fill text-sm text-zinc-100 mr-1"></i>
                             <span>IMDB</span>
                         </a >
-                        <button onClick={() => dispatch(toggle({ Dets: movieDets.details, title: 'movie' }))} className='bg-white px-2 cursor-pointer rounded-sm'><i className={`ri-bookmark-line text-xl`}></i></button>
+                        <button onClick={() => dispatch(toggle({ Dets: movieDets.details, title: 'movie' }))} className='bg-white px-2 cursor-pointer rounded-sm'><i className={`${save ? 'ri-bookmark-fill' : 'ri-bookmark-line'} text-xl`}></i></button>
                     </div>
                     {movieDets.watch_providers && movieDets.watch_providers.flatrate && <div className='flex  mt-2 text-white tracking-tight text-nowrap items-center gap-4'>
                         Available on platforms: {movieDets.watch_providers.flatrate.map((e, i) => <img key={i} src={`https://image.tmdb.org/t/p/original${e.logo_path} `} title={e.provider_name} className='w-[45px] rounded-lg' />)}
