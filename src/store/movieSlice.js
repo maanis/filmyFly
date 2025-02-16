@@ -5,7 +5,8 @@ const movieSlice = createSlice({
     initialState: {
         feedItems: null,
         trending: null,
-        queryResults: null
+        queryResults: null,
+        playList: []
     },
     reducers: {
         addTrending: (state, action) => {
@@ -16,9 +17,17 @@ const movieSlice = createSlice({
         },
         addQueryDets: (state, action) => {
             state.queryResults = action.payload
+        },
+        addPlayList: (state, action) => {
+            state.playList.push(action.payload)
+        },
+        removePlaylist: (state, action) => {
+            state.playList.filter(e => e.id != action.payload)
+            console.log(action.payload)
         }
+
     }
 })
 
 export default movieSlice.reducer
-export const { addTrending, addFeedItems, addQueryDets } = movieSlice.actions
+export const { addTrending, addFeedItems, addQueryDets, addPlayList, removePlaylist } = movieSlice.actions
