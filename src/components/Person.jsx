@@ -58,7 +58,7 @@ const Person = () => {
                     loader={<h4 className='w-full text-center mb-2'>Loading...</h4>}
                     className='h-screen w-full'
                 >
-                    <Cards data={Person} title={''}/>
+                    <Cards data={Person} title={'person'} />
                 </InfiniteScroll>
             </div>
         </>

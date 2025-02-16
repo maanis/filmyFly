@@ -60,6 +60,7 @@ const MovieDets = () => {
     }
     useEffect(() => {
         fetchMovieDets()
+        console.log('heyy')
         return () => {
             dispatch(removeMovieDets())
         }
@@ -111,7 +112,7 @@ const MovieDets = () => {
             <div className='max-w-screen-xl flex justify-center items-center gap-5 mb-4 mx-auto '>
                 <p className='text-2xl text-white font-semibold'>Cast: </p>
                 {movieDets.credit.cast.slice(0, 6).map((e, i) => (
-                    <img key={i} src={`https://image.tmdb.org/t/p/original${e.profile_path}`} className='w-[6rem] shadow-lg h-[6rem] object-cover rounded-full' alt="" title={e.name || e.original_name} />
+                    <Link key={i} to={`/person/${e.id}`}><img src={`https://image.tmdb.org/t/p/original${e.profile_path}`} className='w-[6rem] shadow-lg h-[6rem] object-cover rounded-full' alt="" title={e.name || e.original_name} /></Link>
                 ))}
                 {movieDets.credit && movieDets.credit.cast.length > 6 && (
                     <Link className="w-[6rem] h-[6rem] flex flex-col items-center justify-center bg-zinc-300/20 backdrop-blur-md text-white rounded-full text-sm">
