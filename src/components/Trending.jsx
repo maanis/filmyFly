@@ -5,7 +5,7 @@ import { addTrending } from '../store/movieSlice'
 import InfiniteScroll from 'react-infinite-scroll-component';
 import Cards from './Cards'
 import Loader from './Loader'
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 const Trending = () => {
     const [trending, settrending] = useState([])
@@ -17,7 +17,6 @@ const Trending = () => {
         try {
             const data = await fetch(`https://api.themoviedb.org/3/trending/${category}/day?language=en-US&page=${pageNumber}`, API_OPTIONS)
             const res = await data.json()
-            console.log(res)
             if (res.results.length === 0) {
                 sethasMore(false)
                 return
@@ -29,7 +28,6 @@ const Trending = () => {
         }
     }
     useEffect(() => {
-        console.log("Category changed, resetting data...");
         settrending([]); // Clear previous data
         setpage(1);
         sethasMore(true);
@@ -37,13 +35,11 @@ const Trending = () => {
     }, [category]);
 
     const fetchMoreData = () => {
-        console.log("Fetching More Data...");
         const nextPage = page + 1;
         setpage(nextPage); // Update the page state
         fetchTrending(nextPage);
     };
 
-    console.log(trending)
 
     return trending.length > 0 ? (
         <>

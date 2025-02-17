@@ -15,7 +15,6 @@ const Popular = () => {
         try {
             const data = await fetch(`https://api.themoviedb.org/3/movie/popular?language=en-US&page=${pageNumber}`, API_OPTIONS)
             const res = await data.json()
-            console.log(res)
             if (res.results.length === 0) {
                 sethasMore(false)
                 return
@@ -26,7 +25,6 @@ const Popular = () => {
         }
     }
     useEffect(() => {
-        console.log("Category changed, resetting data...");
         setPopular([]);
         setpage(1);
         sethasMore(true);
@@ -34,13 +32,11 @@ const Popular = () => {
     }, []);
 
     const fetchMoreData = () => {
-        console.log("Fetching More Data...");
         const nextPage = page + 1;
         setpage(nextPage); // Update the page state
         fetchPopular(nextPage);
     };
 
-    console.log(Popular)
 
     return Popular.length > 0 ? (
         <>

@@ -11,6 +11,7 @@ const Feed = () => {
     const [wallpaper, setwallpaper] = useState(null)
     const dispatch = useDispatch()
     const [sidebar, setSidebar] = useState(false)
+    const { feedItems } = useSelector(state => state.movies)
     const fetchFeedItems = async () => {
         try {
             const data = await fetch(`https://api.themoviedb.org/3/trending/${category}/day?language=en-US`, API_OPTIONS)
@@ -22,15 +23,15 @@ const Feed = () => {
     }
 
     const fetchWallpaper = async () => {
-        // const { feedItems } = useSelector(state => state.movies)
         const data = await fetch(`https://api.themoviedb.org/3/trending/${category}/day?language=en-US`, API_OPTIONS)
         const res = await data.json()
         setwallpaper(res.results[Math.floor(Math.random() * res.results.length)])
     }
     useEffect(() => {
-        fetchFeedItems()
-        fetchWallpaper()
+        !feedItems && fetchFeedItems()
+        !wallpaper && fetchWallpaper()
     }, [category])
+
 
     return wallpaper ? (
         <div className='h-screen flex w-full bg-zinc-100'>

@@ -4,7 +4,6 @@ import { noImg } from '../utils/constants'
 
 const Cards = ({ data, title }) => {
     const [showText, setshowText] = useState(true)
-    console.log(data)
     return data.length > 0 ? (
         <div className='w-full min-h-full overflow-y-auto overflow-x-hidden p-5 flex flex-wrap gap-5'>
             {data.map((d, i) => (
