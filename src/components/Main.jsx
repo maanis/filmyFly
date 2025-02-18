@@ -15,8 +15,8 @@ const Main = ({ sidebar, data, func }) => {
                 <Topnav />
             </div>
             <FeedHeader data={data} />
-            <div className="flex pl-3 pr-5 justify-between items-center h-[6%]">
-                <p className='text-2xl font-semibold'>Popular</p>
+            <div className="flex pl-3 pr-5 justify-between items-center max-md:px-14 max-md:relative top-[73%] h-[6%]">
+                <p className='text-2xl font-semibold max-md:text-white'>Popular</p>
                 <Dropdown options={['all', 'movie', 'tv',]} method={func} />
             </div>
 

@@ -34,7 +34,7 @@ const Feed = () => {
 
 
     return wallpaper ? (
-        <div className='h-screen flex w-full bg-zinc-100'>
+        <div className='h-screen flex w-full overflow-x-hidden bg-zinc-100'>
             {/* <Sidebar sidebar={sidebar} sidebarfn={setSidebar} /> */}
             <div className="gradient w-[1px] h-full bg-zinc-300"></div>
             <Main func={setcategory} data={wallpaper} sidebar={sidebar} sidebarfn={setSidebar} />

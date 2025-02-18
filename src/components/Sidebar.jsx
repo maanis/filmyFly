@@ -22,7 +22,7 @@ const Sidebar = () => {
 
 
     return (
-        <div className={`${sidebar ? 'w-[16%]' : 'w-[5%]'} ${location.pathname === '/feed' && 'static '} fixed z-[1000] bg-white h-full transition-all p-2 flex justify-center items-center `}>
+        <div className={`${sidebar ? 'w-[16%]' : 'w-[5%]'} ${location.pathname === '/feed' && 'static '} max-[768px]:hidden fixed z-[1000] bg-white h-full transition-all p-2 flex justify-center items-center `}>
             <ul onMouseEnter={() => dispatch(toggleSidebar(true))} onMouseLeave={() => dispatch(toggleSidebar(false))} className='w-full  h-full p-2 flex flex-col items-center gap-5'>
                 {/* {[<i className="ri-compass-line"></i>, <i className="ri-funds-line"></i>, <i className="ri-save-line"></i>, <i className="ri-account-circle-fill"></i>].map(e => (
                     <li className='text-4xl cursor-pointer flex'>{e}</li>
