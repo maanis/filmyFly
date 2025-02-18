@@ -12,6 +12,7 @@ const Browse = () => {
         e.preventDefault();
         console.log(input.current.value);
 
+
         const response = await fetch(
             "https://api-inference.huggingface.co/models/Falconsai/question_answering_v2",
             {
