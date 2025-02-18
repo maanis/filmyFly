@@ -5,29 +5,33 @@ import openAi from '../utils/openAi'
 import anthropic from '../utils/openAi'
 import openai from '../utils/openAi'
 import { openAi_key } from '../utils/constants'
+import model from '../utils/openAi'
 
 const Browse = () => {
+
+    const fetchMovie = async (movie) => {
+        const data = await fetch(`https://api.themoviedb.org/3/search/multi?query=${movie}&include_adult=false&language=en-US&page=1`)
+        const res = await data.json()
+        return res
+    }
     const input = useRef(null)
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log(input.current.value);
 
 
-        const response = await fetch(
-            "https://api-inference.huggingface.co/models/Falconsai/question_answering_v2",
-            {
-                method: "POST",
-                headers: {
-                    Authorization: `Bearer ${openAi_key}`,
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ inputs: 'Hey ai' }),
-            }
-        );
+        const prompt = `Act as a movie Reccomendation system and get me only the names of 5 movies based on the prompt: ${input.current.value}, and the response should be like this ex: gadar, koi mil gaya, krish, veer zaara and singham. alwways give only 5 movies names like the example as shown no matter what dont exaggerate`
+
+        const result = await model.generateContent(prompt);
+        const res = result.response.text();
+        const arr = res.split(',')
+        console.log(arr)
+        // arr.map((e, i) => console.log(e, i))
+        const data = arr.map(movie => fetchMovie(movie))
+        console.log(data)
 
 
-        const data = await response.json();
-        console.log(data);
+
         // console.log(data ? [0].generated_text);
 
     };
