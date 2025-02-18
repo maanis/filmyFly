@@ -2,18 +2,35 @@ import React, { useRef } from 'react'
 import bg from '../assets/bg.jpg'
 import DetsNav from './DetsNav'
 import openAi from '../utils/openAi'
+import anthropic from '../utils/openAi'
+import openai from '../utils/openAi'
+import { openAi_key } from '../utils/constants'
 
 const Browse = () => {
     const input = useRef(null)
     const handleSubmit = async (e) => {
-        e.preventDefault()
-        console.log(input.current.value)
-        const resp = await openAi.chat.completions.create({
-            messages: [{ role: 'user', content: input.current.value }],
-            model: 'gpt-4o',
-        });
-        console.log(resp)
-    }
+        e.preventDefault();
+        console.log(input.current.value);
+
+        const response = await fetch(
+            "https://api-inference.huggingface.co/models/Falconsai/question_answering_v2",
+            {
+                method: "POST",
+                headers: {
+                    Authorization: `Bearer ${openAi_key}`,
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ inputs: 'Hey ai' }),
+            }
+        );
+
+
+        const data = await response.json();
+        console.log(data);
+        // console.log(data ? [0].generated_text);
+
+    };
+
     return (
         <div className='w-full h-screen bg-zinc-950'>
             <img src={bg} className='w-full h-screen object-cover fixed top-0' alt="" />

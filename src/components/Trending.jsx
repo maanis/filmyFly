@@ -6,6 +6,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import Cards from './Cards'
 import Loader from './Loader'
 import { useDispatch } from 'react-redux';
+import SkeletonCards from './SkeletonCards';
 
 const Trending = () => {
     const [trending, settrending] = useState([])
@@ -61,7 +62,7 @@ const Trending = () => {
                 </InfiniteScroll>
             </div>
         </>
-    ) : <Loader />
+    ) : <SkeletonCards />
 }
 
 export default Trending

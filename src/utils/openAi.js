@@ -1,9 +1,10 @@
 import OpenAI from 'openai';
 import { openAi_key } from './constants';
 
-const openAi = new OpenAI({
+const openai = new OpenAI({
+    baseURL: 'https://openrouter.ai/api/v1',
     apiKey: openAi_key,
-    dangerouslyAllowBrowser: true// This is the default and can be omitted
+    dangerouslyAllowBrowser: true
 });
 
-export default openAi
+export default openai
