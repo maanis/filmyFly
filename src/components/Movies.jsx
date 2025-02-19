@@ -5,6 +5,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import Cards from './Cards'
 import Loader from './Loader'
 import { useDispatch, useSelector } from 'react-redux';
+import SkeletonCards from './SkeletonCards';
 
 const Movies = () => {
     const [Movie, setMovie] = useState([])
@@ -64,7 +65,7 @@ const Movies = () => {
                 </InfiniteScroll>
             </div>
         </>
-    ) : <Loader />
+    ) : <SkeletonCards />
 }
 
 export default Movies

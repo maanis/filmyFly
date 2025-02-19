@@ -15,6 +15,7 @@ import PersonDets from './components/PersonDets'
 import Playlist from './components/Playlist'
 import Browse from './components/Browse'
 import SkeletonCards from './components/SkeletonCards'
+import { Profile } from './components/Profile'
 
 const App = () => {
   const { pathname } = useLocation()
@@ -41,7 +42,10 @@ const App = () => {
         <Route path="/playlist" element={<Playlist />} />
         <Route path="/browse" element={<Browse />} />
         <Route path="/skeleton" element={<SkeletonCards />} />
-        <Route path="*" element={<Error />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="*" element={<Error title="Page Not Found"
+          message="The page you're looking for doesn't exist or has been moved."
+          showRefresh={false} />} />
       </Routes>
     </div>
   )
