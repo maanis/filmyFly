@@ -12,7 +12,7 @@ const FeedCards = ({ data, title = '' }) => {
           ,
           backgroundSize: "cover",
           backgroundPosition: "center",
-        }} className={`w-[9rem] max-md:w-[10rem] max-sm:w-[8rem] min-[976px]:w-[8rem] transition-all relative rounded-md cursor-pointer h-full shrink-0`}>
+        }} className={`w-[9rem] max-[768px]:w-[10rem] max-[640px]:w-[8rem] max-[432px]:w-[10rem] max-[432px]:h-[108%] min-[976px]:w-[8rem] transition-all relative rounded-md cursor-pointer h-full shrink-0`}>
           <h2 className='text-xs font-semibold absolute bottom-4 left-3 text-white'>{d.title || d.name || d.original_name}</h2>
         </Link>)
       )}
