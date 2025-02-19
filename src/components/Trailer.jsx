@@ -21,10 +21,10 @@ const Trailer = () => {
 
     return (
         <div className='absolute flex justify-center items-center h-full w-full bg-black/80 top-0 left-0'>
-            <i onClick={() => navigate(-1)} className="ri-close-fill absolute top-[4%] right-[14%] cursor-pointer hover:text-red-500 transition-colors text-5xl text-white"></i>
-            <div className='h-[550px] w-[1080px] overflow-hidden rounded-lg'>
+            <i onClick={() => navigate(-1)} className="ri-close-fill absolute top-[4%] right-[14%] max-md:right-[5%] max-[768px]:top-[7%] max-[450px]:top-[30%] max-md:text-3xl cursor-pointer hover:text-red-500 transition-colors text-5xl text-white"></i>
+            <div className='h-[550px] max-[768px]:h-[420px] max-[602px]:h-[360px] max-[602px]:w-[480px] max-[450px]:h-[280px] max-[450px]:w-[360px] w-[1080px] max-[768px]:w-[620px] overflow-hidden rounded-lg'>
                 {id ? (
-                    <ReactPlayer controls height={550} width={1080} url={`https://www.youtube.com/watch?v=${id}`} />
+                    <ReactPlayer controls height={'100%'} width={'100%'} url={`https://www.youtube.com/watch?v=${id}`} />
                 ) : (
                     <p className="text-white text-xl text-center">No trailer available</p>
                 )}

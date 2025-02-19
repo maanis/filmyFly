@@ -12,7 +12,7 @@ const Sidebar = () => {
         { icon: <i className="ri-funds-line"></i>, name: 'Browse', link: 'browse' },
         { icon: <i className="ri-compass-line"></i>, name: 'Person', link: 'person' },
         { icon: <i className="ri-save-line"></i>, name: 'My Playlist', link: 'playlist' },
-        { icon: <i className="ri-account-circle-fill"></i>, name: 'Account', link: 'account' },
+        { icon: <i className="ri-account-circle-fill"></i>, name: 'Profile', link: 'profile' },
         { icon: <i className="ri-logout-circle-line"></i>, name: 'Logout', link: 'logout' }
     ]
     const location = useLocation()

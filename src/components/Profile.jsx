@@ -3,7 +3,7 @@ import { Mail, User } from 'lucide-react';
 
 export function Profile() {
     return (
-        <div className="bg-white rounded-lg shadow-lg p-6 max-w-sm mx-auto">
+        <div className="bg-white h-full rounded-lg shadow-lg p-6 max-w-sm mx-auto">
             <div className="flex flex-col items-center space-y-4">
                 <div className="relative">
                     <img
