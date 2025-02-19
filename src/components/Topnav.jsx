@@ -4,9 +4,25 @@ import { useDispatch, useSelector } from 'react-redux'
 import { addQueryDets } from '../store/movieSlice'
 import noImg from '/noImg.jpg'
 import { Link } from 'react-router-dom'
+import { useMediaQuery } from 'react-responsive'
 
-const Topnav = ({ search, setinput, queryResults, input }) => {
+const Topnav = ({ search }) => {
     const dispatch = useDispatch()
+    const [input, setinput] = useState('')
+    const { queryResults } = useSelector(state => state.movies)
+    const isMobile = useMediaQuery({ query: "(max-width: 482px)" });
+
+    const querySearch = async () => {
+        const res = await fetch(`https://api.themoviedb.org/3/search/multi?query=${input}&include_adult=false&language=en-US&page=1`, API_OPTIONS)
+        const data = await res.json()
+        dispatch(addQueryDets(data.results))
+    }
+    useEffect(() => {
+        querySearch()
+        isMobile && !search && setinput('')
+    }, [input, search])
+
+
 
 
     return (

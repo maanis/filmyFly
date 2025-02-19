@@ -124,12 +124,11 @@ const TvDets = () => {
                         <i className='ri-arrow-right-line'></i>
                     </Link>
                 )}
-
             </div>
             {TvDets.details.seasons.length > 1 && <>
                 <div className="gradient h-0.5 w-full bg-zinc-500"></div>
                 <h2 className='text-white text-2xl px-3 py-4 font-bold'>Seasons:</h2>
-                <FeedCards title={'tv'} data={TvDets.details.seasons && TvDets.details.seasons.length > 0 && TvDets.details.seasons} />
+                <FeedCards title={'season'} data={TvDets.details.seasons && TvDets.details.seasons.length > 0 && TvDets.details.seasons} />
             </>}
 
             <div className="gradient h-0.5 w-full bg-zinc-500"></div>

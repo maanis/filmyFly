@@ -12,20 +12,10 @@ const Main = ({ sidebar, data, func }) => {
     const { feedItems } = useSelector(state => state.movies)
     const dispatch = useDispatch()
     const [search, setsearch] = useState(false)
-    const [input, setinput] = useState('')
-    const { queryResults } = useSelector(state => state.movies)
-    const querySearch = async () => {
-        const res = await fetch(`https://api.themoviedb.org/3/search/multi?query=${input}&include_adult=false&language=en-US&page=1`, API_OPTIONS)
-        const data = await res.json()
-        dispatch(addQueryDets(data.results))
-    }
-    useEffect(() => {
-        querySearch()
-    }, [input])
+
 
     const handleIconClick = () => {
         setsearch(!search)
-        setinput('')
     }
     return (
         <div className={`w-full relative transition-all `}>
@@ -33,7 +23,7 @@ const Main = ({ sidebar, data, func }) => {
                 <div onClick={() => dispatch(toggleSidebar(true))} className='text-2xl max-md:text-[25px] md:hidden cursor-pointer text-zinc-200'><i class="ri-menu-2-line"></i></div>
                 <span onClick={handleIconClick} className='text-3xl min-[482px]:hidden max-md:text-2xl transition-all text-zinc-200 left-2'><i className={`${search ? 'ri-close-fill' : 'ri-search-eye-line'}`}></i></span>
 
-                <Topnav search={search} setinput={setinput} queryResults={queryResults} input={input} />
+                <Topnav search={search} />
             </div>
             <FeedHeader data={data} />
             <div className="flex pl-3 pr-5 justify-between items-center max-md:px-7 max-md:relative top-[64%] h-[6%]">
