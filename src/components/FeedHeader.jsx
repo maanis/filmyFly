@@ -9,8 +9,9 @@ const FeedHeader = ({ data }) => {
             backgroundSize: "cover",
             backgroundPosition: "top",
         }} className='w-full h-[65%] max-md:h-full max-md:absolute relative'>
-            <div className='absolute top-1/2 p-[5%] -translate-y-1/2 text-white'>
-                <h2 className='text-5xl max-[976px]:text-4xl  font-black'>{data.title || data.name || data.original_name}</h2>
+            <div className="absolute h-full w-full bg-gradient-to-t from-zinc-950 md:hidden"></div>
+            <div className='absolute top-1/2 max-md:top-[35%] p-[5%] -translate-y-1/2 text-white'>
+                <h2 className='text-5xl max-[976px]:text-4xl max-sm:text-2xl  font-black'>{data.title || data.name || data.original_name}</h2>
                 <p className='w-[45%] text-zinc-300 max-[976px]:text-sm max-[754px]:text-xs max-[754px]:w-[68%] max-[746px]:w-[80%] max-[746px]:text-xs  my-3'>{data.overview.slice(0, 200)}... <Link to={`/${data.media_type}/${data.id}`} className='text-blue-400 cursor-pointer hover:underline'>more</Link></p>
                 <p className='capitalize max-[976px]:text-xs max-[754px]:text-[10px]'>
                     <i className="ri-megaphone-line mr-1  text-yellow-400"></i>{data.release_date || 'NA'}

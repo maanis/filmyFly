@@ -22,20 +22,36 @@ const Sidebar = () => {
 
 
     return (
-        <div className={`${sidebar ? 'w-[16%]' : 'w-[5%]'} ${location.pathname === '/feed' && 'static '} max-[768px]:hidden fixed z-[1000] bg-white h-full transition-all p-2 flex justify-center items-center `}>
-            <ul onMouseEnter={() => dispatch(toggleSidebar(true))} onMouseLeave={() => dispatch(toggleSidebar(false))} className='w-full  h-full p-2 flex flex-col items-center gap-5'>
-                {/* {[<i className="ri-compass-line"></i>, <i className="ri-funds-line"></i>, <i className="ri-save-line"></i>, <i className="ri-account-circle-fill"></i>].map(e => (
+        <>
+            <div className={`${sidebar ? 'w-[16%] max-[960px]:w-[20%]' : 'w-[5%] max-md:w-0 max-[960px]:w-[7%]'} ${location.pathname === '/feed' && 'static '}max-md:hidden fixed z-[1000] bg-white h-full transition-all p-2 flex justify-center items-center `}>
+                <ul onMouseEnter={() => dispatch(toggleSidebar(true))} onMouseLeave={() => dispatch(toggleSidebar(false))} className='w-full max-md:hidden h-full p-2 flex flex-col items-center gap-5'>
+                    {/* {[<i className="ri-compass-line"></i>, <i className="ri-funds-line"></i>, <i className="ri-save-line"></i>, <i className="ri-account-circle-fill"></i>].map(e => (
                     <li className='text-4xl cursor-pointer flex'>{e}</li>
                 ))} */}
-                {data.map((e, i) => (
-                    <NavLink to={`/${e.link}`} key={i} className={({ isActive }) => `${isActive ? 'bg-red-500 text-white' : ''} shadow-md   ${i === 5 && 'mt-auto'}  ${sidebar ? 'rounded-lg w-full px-2 py-2 justify-start' : 'rounded-full justify-center h-[45px] w-[45px]'}  items-center gap-2 transition-all  cursor-pointer flex hover:bg-red-500 hover:text-white`}>
-                        <span className='text-xl inline-block'>{e.icon}</span>
-                        {sidebar && <p className='text-xl capitalize font-semibold text-nowrap'>{e.name}</p>}
-                    </NavLink>
-                ))}
-            </ul>
+                    {data.map((e, i) => (
+                        <NavLink to={`/${e.link}`} key={i} className={({ isActive }) => `${isActive ? 'bg-red-500 text-white' : ''} shadow-md   ${i === 5 && 'mt-auto'}  ${sidebar ? 'rounded-lg w-full px-2 py-2 max-[1056px]:py-1 justify-start' : 'rounded-full justify-center h-[45px] w-[45px] max-[1056px]:h-[36px] max-[1056px]:w-[36px] '}  items-center gap-2 transition-all  cursor-pointer flex hover:bg-red-500 hover:text-white`}>
+                            <span className='text-xl max-[1056px]:text-lg inline-block'>{e.icon}</span>
+                            {sidebar && <p className='text-xl max-[1056px]:text-lg max-[960px]:text-[16px] capitalize font-semibold text-nowrap'>{e.name}</p>}
+                        </NavLink>
+                    ))}
+                </ul>
 
-        </div>
+
+
+            </div>
+
+            <div className={`h-[65%] overflow-y-auto absolute left-0 z-[999999] bg-zinc-300/45 backdrop-blur-md w-full ${sidebar ? 'top-0' : 'top-[-65%]'} transition-all`}>
+                <ul className='w-full h-full p-2 flex flex-col items-center gap-5'>
+
+                    {data.map((e, i) => (
+                        <NavLink onClick={() => dispatch(toggleSidebar(false))} to={`/${e.link}`} key={i} className={({ isActive }) => `${isActive ? 'bg-red-500 text-white' : ''} shadow-md   ${i === 5 && 'mt-auto'}  ${sidebar ? 'rounded-lg w-full px-2 py-2 max-[1056px]:py-1 justify-start' : 'rounded-full justify-center h-[45px] w-[45px] max-[1056px]:h-[36px] max-[1056px]:w-[36px] '}  items-center gap-2 transition-all  cursor-pointer flex hover:bg-red-500 hover:text-white`}>
+                            <span className='text-xl max-[1056px]:text-lg inline-block'>{e.icon}</span>
+                            {sidebar && <p className='text-xl max-[1056px]:text-lg max-[960px]:text-[16px] capitalize font-semibold text-nowrap'>{e.name}</p>}
+                        </NavLink>
+                    ))}
+                </ul>
+            </div>
+        </>
     )
 }
 
