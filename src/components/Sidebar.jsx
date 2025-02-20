@@ -19,6 +19,19 @@ const Sidebar = () => {
     const dispatch = useDispatch()
     const sidebar = useSelector(state => state.utils)
 
+    const openModal = () => modals.openConfirmModal({
+        title: 'Please confirm your action',
+        children: (
+            <Text size="sm">
+                This action is so important that you are required to confirm it with a modal. Please click
+                one of these buttons to proceed.
+            </Text>
+        ),
+        labels: { confirm: 'Confirm', cancel: 'Cancel' },
+        onCancel: () => console.log('Cancel'),
+        onConfirm: () => console.log('Confirmed'),
+    });
+
 
 
     return (
@@ -34,6 +47,10 @@ const Sidebar = () => {
                             {sidebar && <p className='text-xl max-[1056px]:text-lg max-[960px]:text-[16px] capitalize font-semibold text-nowrap'>{e.name}</p>}
                         </NavLink>
                     ))}
+                    <NavLink onClick={openModal} className={`shadow-md ${sidebar ? 'rounded-lg w-full px-2 py-2 max-[1056px]:py-1 justify-start' : 'rounded-full justify-center h-[45px] w-[45px] max-[1056px]:h-[36px] max-[1056px]:w-[36px] '}  items-center gap-2 transition-all max-md:hidden  cursor-pointer flex hover:bg-red-500 hover:text-white`}>
+                        <span className='text-xl max-md:hidden max-[1056px]:text-lg inline-block'><i className="ri-logout-circle-line"></i></span>
+                        {sidebar && <p className='text-xl max-[1056px]:text-lg max-[960px]:text-[16px] capitalize font-semibold text-nowrap'>Logout</p>}
+                    </NavLink>
                 </ul>
 
 
