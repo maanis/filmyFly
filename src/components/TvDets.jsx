@@ -97,7 +97,7 @@ const TvDets = () => {
                         <p className='text-sm max-[768px]:text-xs max-[468px]:text-[8px]'><span className='mr-1'>{TvDets.details.genres.map(e => e.name).join(', ')}</span> | <span className='ml-1 max-[768px]:text-xs max-[468px]:text-[8px]'>{TvDets.details.first_air_date || TvDets.details.last_air_date}</span></p>
                         <a target='_blank' href={`${TvDets.details.homepage}`}><i className="ri-global-fill text-lg hover:text-blue-400"></i></a>
                     </div>
-                    <p className='  text-zinc-300 my-3 max-md:my-2 max-[1066px]:text-sm max-md:text-xs max-[728px]:w-[75%]'>{TvDets.details.overview}</p>
+                    <p className='  text-zinc-300 my-3 max-md:my-2 max-[1066px]:text-sm max-md:text-xs max-[728px]:w-[75%] max-[450px]:w-[90%]'>{TvDets.details.overview}</p>
                     <div className="flex gap-3 mb-3">
                         <Link to={`${pathname}/trailer`} className='px-4 py-1 rounded-md bg-red-500 inline-block text-white hover:bg-red-700 transition-colors  cursor-pointer font-semibold text-lg'>Watch trailer</Link>
                         <a target='_blank' href={`https://www.imdb.com/title/${TvDets.external_ids.imdb_id}/`} className='px-4 py-1 rounded-md bg-yellow-400 text-black hover:bg-yellow-500  max-md:text-sm transition-colors  cursor-pointer font-semibold text-lg flex items-center'>

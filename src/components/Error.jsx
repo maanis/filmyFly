@@ -11,7 +11,7 @@ export function Error({
   };
 
   const handleHome = () => {
-    window.location.href = '/';
+    window.location.href = '/feed';
   };
 
   return (

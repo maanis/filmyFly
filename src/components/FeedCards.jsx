@@ -7,7 +7,7 @@ const FeedCards = ({ data, title = '' }) => {
   return data.length > 0 ? (
     <div className={`w-full max-md:relative ${title === '' && 'max-md:top-[65%]'}  flex ${title != 'season' && 'max-md:flex-wrap max-md:justify-center'} ${title === 'season' && 'overflow-y-auto w-full  relative h-[30%]'}  gap-3 min-md:overflow-x-auto   h-[28%] px-3 py-2`}>
       {data.map((d, i) => (
-        <Link to={`/${d.media_type || title}/${d.id}`} key={i} style={{
+        <Link to={`${title != 'season' && `/${d.media_type || title}/${d.id}`}`} key={i} style={{
           backgroundImage: d.poster_path || d.backdrop_path || d.profile_path ? `linear-gradient(to top, rgba(0, 0, 0, 0.9),rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2)),url('https://image.tmdb.org/t/p/original${d.poster_path || d.backdrop_path || d.profile_path}')` : `linear-gradient(to top, rgba(0, 0, 0, 0.9),rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2)),url(${noImg})`
           ,
           backgroundSize: "cover",

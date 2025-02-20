@@ -1,7 +1,12 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { NavLink, useLocation } from 'react-router-dom'
+import { NavLink, useLocation, useNavigate } from 'react-router-dom'
 import { toggleSidebar } from '../store/utils'
+import { Button, Text } from '@mantine/core';
+import { modals } from '@mantine/modals';
+import { onAuthStateChanged, signOut } from 'firebase/auth';
+import { addUser, removeUser } from '../store/userSlice';
+import { auth } from '../utils/firebase';
 
 const Sidebar = () => {
     const data = [
@@ -13,25 +18,54 @@ const Sidebar = () => {
         { icon: <i className="ri-compass-line"></i>, name: 'Person', link: 'person' },
         { icon: <i className="ri-save-line"></i>, name: 'My Playlist', link: 'playlist' },
         { icon: <i className="ri-account-circle-fill"></i>, name: 'Profile', link: 'profile' },
-        { icon: <i className="ri-logout-circle-line"></i>, name: 'Logout', link: 'logout' }
+
     ]
     const location = useLocation()
     const dispatch = useDispatch()
     const sidebar = useSelector(state => state.utils)
+    const navigate = useNavigate()
 
-    const openModal = () => modals.openConfirmModal({
-        title: 'Please confirm your action',
-        children: (
-            <Text size="sm">
-                This action is so important that you are required to confirm it with a modal. Please click
-                one of these buttons to proceed.
-            </Text>
-        ),
-        labels: { confirm: 'Confirm', cancel: 'Cancel' },
-        onCancel: () => console.log('Cancel'),
-        onConfirm: () => console.log('Confirmed'),
-    });
+    const openDeleteModal = () =>
+        modals.openConfirmModal({
+            title: 'Logout your profile',
+            centered: true,
+            children: (
+                <Text size="sm">
+                    Are you sure you want to log-out your profile?
+                </Text>
+            ),
+            labels: { confirm: 'Logout', cancel: "Cancel" },
+            confirmProps: { color: 'red' },
+            onCancel: () => console.log('Cancel'),
+            onConfirm: () => handleSignOut(),
+        });
 
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged
+            (auth, (user) => {
+                if (user) {
+                    const { uid, displayName, email, photoURL } = user;
+                    dispatch(addUser({ uid, displayName, email, photoURL }))
+                    navigate('/feed')
+                } else {
+                    dispatch(removeUser())
+                    navigate('/')
+                }
+            });
+        return () => unsubscribe()
+    }, [])
+
+    const handleSignOut = () => {
+        signOut(auth).then(() => {
+        }).catch((error) => {
+            console.log(error)
+        });
+    }
+
+    const handleLogoutModal = () => {
+        openDeleteModal()
+        dispatch(toggleSidebar(false))
+    }
 
 
     return (
@@ -47,7 +81,7 @@ const Sidebar = () => {
                             {sidebar && <p className='text-xl max-[1056px]:text-lg max-[960px]:text-[16px] capitalize font-semibold text-nowrap'>{e.name}</p>}
                         </NavLink>
                     ))}
-                    <NavLink onClick={openModal} className={`shadow-md ${sidebar ? 'rounded-lg w-full px-2 py-2 max-[1056px]:py-1 justify-start' : 'rounded-full justify-center h-[45px] w-[45px] max-[1056px]:h-[36px] max-[1056px]:w-[36px] '}  items-center gap-2 transition-all max-md:hidden  cursor-pointer flex hover:bg-red-500 hover:text-white`}>
+                    <NavLink onClick={openDeleteModal} className={`shadow-md ${sidebar ? 'rounded-lg w-full px-2 py-2 max-[1056px]:py-1 justify-start' : 'rounded-full justify-center h-[45px] w-[45px] max-[1056px]:h-[36px] max-[1056px]:w-[36px] '}  items-center gap-2 transition-all max-md:hidden  cursor-pointer flex hover:bg-red-500 hover:text-white`}>
                         <span className='text-xl max-md:hidden max-[1056px]:text-lg inline-block'><i className="ri-logout-circle-line"></i></span>
                         {sidebar && <p className='text-xl max-[1056px]:text-lg max-[960px]:text-[16px] capitalize font-semibold text-nowrap'>Logout</p>}
                     </NavLink>
@@ -66,6 +100,10 @@ const Sidebar = () => {
                             <p className='text-xl max-[1056px]:text-lg max-[960px]:text-[16px] capitalize font-semibold text-nowrap'>{e.name}</p>
                         </NavLink>
                     ))}
+                    <NavLink onClick={handleLogoutModal} className={`shadow-md ${sidebar ? 'rounded-lg w-full px-2 py-2 max-[1056px]:py-1 justify-start' : 'rounded-full justify-center h-[45px] w-[45px] max-[1056px]:h-[36px] max-[1056px]:w-[36px] '}  items-center gap-2 transition-all cursor-pointer flex hover:bg-red-500 hover:text-white`}>
+                        <span className='text-xl max-[1056px]:text-lg inline-block'><i className="ri-logout-circle-line"></i></span>
+                        {sidebar && <p className='text-xl max-[1056px]:text-lg max-[960px]:text-[16px] capitalize font-semibold text-nowrap'>Logout</p>}
+                    </NavLink>
                 </ul>
             </div>
         </>
