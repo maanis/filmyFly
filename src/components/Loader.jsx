@@ -15,7 +15,7 @@ const Loader = () => {
             <img style={{
                 filter: 'invert(1)'
             }} className='w-[32rem] object-cover' src={loader} alt="" />
-            {text && <h2 className='relative top-[-95px] text-red-500 font-semibold text-lg'>{text}</h2>}
+            {text && <h2 className='relative top-[-95px] max-sm:top-[-70px] text-red-500 font-semibold text-lg'>{text}</h2>}
         </div>
     )
 }
