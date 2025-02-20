@@ -29,7 +29,7 @@ const Trending = () => {
             settrending(prev => [...prev, ...res.results])
             // setpage(page + 1)
         } catch (error) {
-            console.log(error)
+            consoleconsole.log(error)
         }
     }
     useEffect(() => {

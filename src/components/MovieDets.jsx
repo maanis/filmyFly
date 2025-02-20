@@ -19,7 +19,6 @@ const MovieDets = () => {
     const navigate = useNavigate()
     // const [movieDets, setmovieDets] = useState([])
     const movieDets = useSelector(state => state.details.info)
-    // console.log(data)
     const fetchMovieDets = async () => {
         try {
             const endpoints = [
@@ -59,7 +58,6 @@ const MovieDets = () => {
             // setmovieDets(resp)
             dispatch(addMovieDets(resp))
         } catch (error) {
-            console.log(error)
         }
     }
     const playlist = useSelector(state => state.movies.playlist)
@@ -77,7 +75,6 @@ const MovieDets = () => {
     }, [id, playlist])
 
 
-    // console.log(playlist)
 
 
 
@@ -119,7 +116,6 @@ const MovieDets = () => {
                         <button onClick={() => dispatch(toggle({ Dets: movieDets.details, title: 'movie' }))} className='bg-white px-2 cursor-pointer rounded-sm'><i className={`${save ? 'ri-bookmark-fill' : 'ri-bookmark-line'} text-xl`}></i></button>
                     </div>
                     {movieDets.watch_providers && movieDets.watch_providers.flatrate && <div className='flex  mt-2 text-white tracking-tight text-nowrap items-center gap-4'>
-                        Available on platforms: {movieDets.watch_providers.flatrate.map((e, i) => <img key={i} src={`https://image.tmdb.org/t/p/original${e.logo_path} `} title={e.provider_name} className='w-[45px] rounded-lg' />)}
                     </div>}
                 </div>
             </div>

@@ -38,20 +38,17 @@ const PersonDets = () => {
             }
             setPersonDets(resp)
         } catch (error) {
-            console.log(error)
+            consoleconsole.log(error)
         }
 
     }
     useEffect(() => {
         fetchPersonDets()
-        console.log('hey')
         return () => {
             setPersonDets(null)
-            console.log('byy')
         }
     }, [id])
 
-    console.log(PersonDets)
     return PersonDets ? (
         <div className='w-full bg-zinc-800 h-screen overflow-y-auto'>
             <DetsNav />

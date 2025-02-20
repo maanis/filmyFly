@@ -23,7 +23,6 @@ const Movies = () => {
         try {
             const data = await fetch(`https://api.themoviedb.org/3/movie/${category}?language=en-US&page=${pageNumber}`, API_OPTIONS)
             const res = await data.json()
-            console.log(res)
             if (res.results.length === 0) {
                 sethasMore(false)
                 return
@@ -31,11 +30,10 @@ const Movies = () => {
             setMovie(prev => [...prev, ...res.results])
             // setpage(page + 1)
         } catch (error) {
-            console.log(error)
+            consoleconsole.log(error)
         }
     }
     useEffect(() => {
-        console.log("Category changed, resetting data...");
         setMovie([]); // Clear previous data
         setpage(1);
         sethasMore(true);
@@ -43,13 +41,11 @@ const Movies = () => {
     }, [category]);
 
     const fetchMoreData = () => {
-        console.log("Fetching More Data...");
         const nextPage = page + 1;
         setpage(nextPage); // Update the page state
         fetchMovie(nextPage);
     };
 
-    console.log(Movie)
 
     return Movie.length > 0 ? (
         <>

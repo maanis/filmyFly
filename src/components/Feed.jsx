@@ -24,29 +24,27 @@ const Feed = () => {
         }
     }
 
-    const fetchWallpaper = async () => {
-        const data = await fetch(`https://api.themoviedb.org/3/trending/${category}/day?language=en-US`, API_OPTIONS)
-        const res = await data.json()
-        setwallpaper(res.results[Math.floor(Math.random() * res.results.length)])
-    }
-    useEffect(() => {
-        fetchFeedItems()
-        fetchWallpaper()
-    }, [category])
-
-    console.log(category)
-    console.log(sidebar)
+const fetchWallpaper = async () => {
+    const data = await fetch(`https://api.themoviedb.org/3/trending/${category}/day?language=en-US`, API_OPTIONS)
+    const res = await data.json()
+    setwallpaper(res.results[Math.floor(Math.random() * res.results.length)])
+}
+useEffect(() => {
+    fetchFeedItems()
+    fetchWallpaper()
+}, [category])
 
 
-    return wallpaper ? (
-        <div className='h-screen flex w-full overflow-x-hidden max-md:bg-zinc-950'>
-            {sidebar && <div onClick={() => dispatch(toggleSidebar(false))} className="fixed transition-all delay-300 h-full w-full bg-black/45 md:hidden z-[999]"></div>}
-            <div className="gradient w-[1px] h-full bg-zinc-300 max-md:hidden"></div>
-            <Main func={setcategory} data={wallpaper} sidebar={sidebar} />
+
+return wallpaper ? (
+    <div className='h-screen flex w-full overflow-x-hidden max-md:bg-zinc-950'>
+        {sidebar && <div onClick={() => dispatch(toggleSidebar(false))} className="fixed transition-all delay-300 h-full w-full bg-black/45 md:hidden z-[999]"></div>}
+        <div className="gradient w-[1px] h-full bg-zinc-300 max-md:hidden"></div>
+        <Main func={setcategory} data={wallpaper} sidebar={sidebar} />
 
 
-        </div>
-    ) : <Loader />
+    </div>
+) : <Loader />
 }
 
 export default Feed

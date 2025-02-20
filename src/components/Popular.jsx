@@ -25,7 +25,7 @@ const Popular = () => {
             }
             setPopular(prev => [...prev, ...res.results])
         } catch (error) {
-            console.log(error)
+            consoleconsole.log(error)
         }
     }
     useEffect(() => {

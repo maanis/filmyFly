@@ -58,7 +58,7 @@ const Sidebar = () => {
     const handleSignOut = () => {
         signOut(auth).then(() => {
         }).catch((error) => {
-            console.log(error)
+            consoleconsole.log(error)
         });
     }
 

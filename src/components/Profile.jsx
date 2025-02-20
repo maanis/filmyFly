@@ -7,7 +7,6 @@ import { useNavigate } from 'react-router-dom';
 export function Profile() {
     const data = useSelector(state => state.user)
     const navigate = useNavigate()
-    console.log(data)
     return data ? (
         <div className="bg-white h-full w-full rounded-lg shadow-lg p-6 max-w-sm mx-auto">
             <div className="flex flex-col items-center space-y-4">

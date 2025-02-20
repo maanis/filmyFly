@@ -70,7 +70,6 @@ const TvDets = () => {
             dispatch(removeTvDets())
         }
     }, [id, playlist])
-    console.log(TvDets)
     return TvDets ? (
         <div style={{
             backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, 0.9),rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2)), url('https://image.tmdb.org/t/p/original${TvDets.details.backdrop_path || TvDets.details.poster_path || TvDets.details.profile_path}') `,
