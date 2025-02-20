@@ -91,7 +91,7 @@ const Sidebar = () => {
 
             </div>
 
-            <div className={`w-[35%] max-[640px]:w-[55%] max-[450px]:w-[75%]   overflow-y-auto absolute z-[999999] bg-white/25 py-4 px-3 backdrop-blur-md h-full ${sidebar ? 'left-0' : 'left-[-100%]'} md:hidden transition-all delay-100 ease-out`}>
+            <div className={`w-[35%] max-[640px]:w-[55%] max-[450px]:w-[75%]  top-0 bottom-0 overflow-y-auto absolute z-[999999] bg-white/25 py-4 px-3 backdrop-blur-md h-full ${sidebar ? 'left-0' : 'left-[-100%]'} md:hidden transition-all delay-100 ease-out`}>
                 <ul className='w-full h-full p-2 flex flex-col items-center gap-5'>
 
                     {data.map((e, i) => (
