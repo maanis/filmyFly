@@ -56,7 +56,7 @@ const Movies = () => {
                 <div className="nav w-full h-[9%] shadow-lg flex justify-between items-center px-4">
                     <p className='text-2xl max-md:text-lg font-semibold'>Movie <small className='text-sm max-md:text-xs text-zinc-600'>({category})</small></p>
                     {!isMobile && <Dropdown options={['now_playing', 'popular', 'top_rated', 'upcoming']} method={setcategory} />}
-                    {isMobile && <div onClick={() => dispatch(toggleSidebar(true))} className='text-2xl  max-md:text-[25px] md:hidden cursor-pointer text-zinc-950'><i class="ri-menu-2-line"></i></div>
+                    {isMobile && <div onClick={() => dispatch(toggleSidebar(true))} className='text-2xl  max-md:text-[25px] md:hidden cursor-pointer text-zinc-950'><i className="ri-menu-2-line"></i></div>
                     }
                 </div>
                 <div className="flex md:hidden justify-self-end px-4 mt-3"><Dropdown options={['now_playing', 'popular', 'top_rated', 'upcoming']} method={setcategory} /></div>

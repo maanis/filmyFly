@@ -20,7 +20,7 @@ const Main = ({ sidebar, data, func }) => {
     return (
         <div className={`w-full relative transition-all `}>
             <div className='h-[9%] max-[482px]:h-[7%] bg-zinc-600/65 z-50 backdrop-blur-xs  absolute shadow-md flex items-center justify-end max-md:justify-between w-full px-8 max-sm:px-4'>
-                <div onClick={() => dispatch(toggleSidebar(true))} className='text-2xl max-md:text-[25px] md:hidden cursor-pointer text-zinc-200'><i class="ri-menu-2-line"></i></div>
+                <div onClick={() => dispatch(toggleSidebar(true))} className='text-2xl max-md:text-[25px] md:hidden cursor-pointer text-zinc-200'><i className="ri-menu-2-line"></i></div>
                 <span onClick={handleIconClick} className='text-3xl min-[482px]:hidden max-md:text-2xl transition-all text-zinc-200 left-2'><i className={`${search ? 'ri-close-fill' : 'ri-search-eye-line'}`}></i></span>
 
                 <Topnav search={search} />

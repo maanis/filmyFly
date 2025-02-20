@@ -50,7 +50,7 @@ const Popular = () => {
 
                 <div className="nav w-full h-[9%] shadow-lg flex justify-between items-center px-4">
                     <p className='text-2xl max-md:text-lg font-semibold'>Popular</p>
-                    {isMobile && <div onClick={() => dispatch(toggleSidebar(true))} className='text-2xl  max-md:text-[25px] md:hidden cursor-pointer text-zinc-950'><i class="ri-menu-2-line"></i></div>
+                    {isMobile && <div onClick={() => dispatch(toggleSidebar(true))} className='text-2xl  max-md:text-[25px] md:hidden cursor-pointer text-zinc-950'><i className="ri-menu-2-line"></i></div>
                     }
                 </div>
                 <InfiniteScroll
