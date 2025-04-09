@@ -16,6 +16,7 @@ const Browse = () => {
         const res = await data.json()
         return res
     }
+
     const input = useRef(null)
     const handleSubmit = async (e) => {
         e.preventDefault();
