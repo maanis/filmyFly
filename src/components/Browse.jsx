@@ -21,7 +21,6 @@ const Browse = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-
 const prompt = `Act as a movie Reccomendation system and get me only the names of 5 movies based on the prompt: ${input.current.value}, and the response should be like this ex: gadar, koi mil gaya, krish, veer zaara and singham. alwways give only 5 movies names like the example as shown no matter what dont exaggerate`
 
 const result = await model.generateContent(prompt);
