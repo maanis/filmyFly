@@ -1,4 +1,4 @@
-# 🎬 Filmywap Clone
+# 🎬 FilmyFly
 
 A lightweight movie web app built using **React** and **Firebase**. It includes movie streaming, trailers, cast info, and web series — all powered by the **TMDB API**.
 
